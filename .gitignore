@@ -1,3 +1,6 @@
+# Project-specific ignores
+builds/
+addons/
 
 # Godot-specific ignores
 .import/
@@ -6,4 +9,5 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+.vs/
 data_*/
