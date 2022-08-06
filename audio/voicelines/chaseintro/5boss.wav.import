@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/5boss.wav-aa909603f5bd50f506acd2b6f1b26c54.sample"
+
+[deps]
+
+source_file="res://audio/voicelines/chaseintro/5boss.wav"
+dest_files=[ "res://.import/5boss.wav-aa909603f5bd50f506acd2b6f1b26c54.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,1126 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://materials/workspace_floor.material" type="Material" id=1]
+[ext_resource path="res://objects/player/PlayerSpawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://materials/workspace_wall.material" type="Material" id=3]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/level_events/TheFacilityEvents.cs" type="Script" id=5]
+[ext_resource path="res://levels/game_end.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/preeson_doores.png" type="Texture" id=7]
+[ext_resource path="res://objects/door/EscapeDoorBlockage.cs" type="Script" id=8]
+[ext_resource path="res://audio/misc/metal_bang.wav" type="AudioStream" id=9]
+[ext_resource path="res://scripts/VentFromAmongus.cs" type="Script" id=10]
+[ext_resource path="res://textures/metal_plate.jpg" type="Texture" id=11]
+[ext_resource path="res://textures/metal_plate_arm.jpg" type="Texture" id=12]
+[ext_resource path="res://textures/plague.png" type="Texture" id=13]
+[ext_resource path="res://audio/misc/spookylaughing_lennyboy.mp3" type="AudioStream" id=14]
+[ext_resource path="res://scripts/PlagueDoctor.cs" type="Script" id=15]
+[ext_resource path="res://audio/misc/jumpscare.wav" type="AudioStream" id=16]
+[ext_resource path="res://scripts/CutsceneHandler.cs" type="Script" id=17]
+[ext_resource path="res://objects/player/Subtitle.tscn" type="PackedScene" id=18]
+[ext_resource path="res://audio/voicelines/facility/boss.wav" type="AudioStream" id=19]
+[ext_resource path="res://textures/bedside_table.png" type="Texture" id=20]
+[ext_resource path="res://objects/paper_pickup/Paper Pickup.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scripts/TheCurrentPropertyIsCringe.cs" type="Script" id=22]
+[ext_resource path="res://textures/exit_sign.jpg" type="Texture" id=23]
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 1, 0.5, 0.3 )
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.4, 2, 0.1 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 2, 1.2, 0.1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.1, 1, 0.3 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1.3, 1.2, 0.1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "CloseVent"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Model:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 75, 0, 0 ), Vector3( 6.83019e-06, 0, 0 ), Vector3( 6.83019e-06, 0, 0 ), Vector3( 75, 0, 0 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("CloseSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ModelArms:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -45, 0, 0 ), Vector3( -45, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( -45, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ModelArms:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1.25, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 0.487, 1 ), Vector3( 1, 1.25, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../../Enemies/PlagueDoctor")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "BlockAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Model:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 75, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ModelArms:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -45, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ModelArms:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1.25, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -25, 1.7, 52 ), Vector3( -25, 1.7, 6 ), Vector3( -25, 1.6, 4.59838 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( -30, 0, 0 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Audio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 1, 2, 3, 4, 4.5, 5, 5.5, 6, 6.5, 6.8, 7.1, 7.4, 7.7 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Audio:unit_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 6, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -4.0, 0.0, 4.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("OmniLight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 6.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.384615, 0.25, 4.0 ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("Bark")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 4.53478,
+"start_offset": 0.0,
+"stream": ExtResource( 14 )
+} ],
+"times": PoolRealArray( 5.9 )
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Audio:unit_size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 9.0, 16.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Intro"
+length = 15.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../DummyPlayer:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.3, 2.1, 5.01902, 13.4, 13.7, 15.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 2.647, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 10, -90, 0 ), Vector3( 10, -120, -1.046 ), Vector3( 7.25, -80, 1 ), Vector3( 7.25, -130, 1 ), Vector3( 6, -125, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../DummyPlayer:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -30, 1.5, 0 ), Vector3( -31, 1.3, 0 ), Vector3( -31, 1.5, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../DummyPlayer/Subtitle")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9, 4.3, 7.4, 8, 9.9, 13.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "SetCharacter"
+}, {
+"args": [ "You really thought you escaped that easily?" ],
+"method": "Write"
+}, {
+"args": [ "What do you think this is, a horror game?" ],
+"method": "Write"
+}, {
+"args": [  ],
+"method": "End"
+}, {
+"args": [ "Welp uhh.. Anyhow" ],
+"method": "Write"
+}, {
+"args": [ "Something will be coming for you now, later nerd!" ],
+"method": "Write"
+}, {
+"args": [  ],
+"method": "End"
+} ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("../Intercom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 19 )
+} ],
+"times": PoolRealArray( 0.9 )
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Audio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 13.5, 14.2, 14.7 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Audio:unit_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 13.4, 15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 10.0, 16.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../../Props/EscapeDoorBlockage:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -36.6, 11, 0 ), Vector3( -36.6, 11, 0 ), Vector3( -36.6, 2, 0 ) ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("../../Props/EscapeDoorBlockage/Audio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.5 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../DummyPlayer/Camera:current")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 15.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Jumpscare"
+length = 1.25
+tracks/0/type = "audio"
+tracks/0/path = NodePath("../Jumpscare/Audio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Jumpscare/PlagueDoctor:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -0.307 ), Vector3( 0, 0, 0.253 ), Vector3( 0, 0, -0.243 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Jumpscare/PlagueDoctor:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 3.157 ), Vector3( 0, 0, -6.12 ), Vector3( 0, 0, 3.155 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Jumpscare/Camera:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.2, -1 ), Vector3( 0, 0.2, -0.7 ), Vector3( 0, 0.375, -0.738 ), Vector3( 0, 0.079, -0.47 ), Vector3( 0, -1.084, -0.935 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Jumpscare/Camera:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -70, -180, 0 ), Vector3( 10, -180, 0 ), Vector3( -10, -180, 0 ), Vector3( 10, -180, 0 ), Vector3( -10, -180, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Jumpscare:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -25, 1.2, 3.5 ) ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("../Jumpscare/BangBangFRAPAPAPAP")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Jumpscare/Camera:current")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -25, 1.7, 52 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OmniLight:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Audio:unit_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.6 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Jumpscare/PlagueDoctor:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Jumpscare/PlagueDoctor:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../Jumpscare:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -25, -4.8, 3.5 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../DummyPlayer:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../DummyPlayer:translation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -30, 1.5, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../../Props/EscapeDoorBlockage:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -36.6, 11, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Jumpscare/Camera:translation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.2, -1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../Jumpscare/Camera:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("../Jumpscare/Camera:current")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("../DummyPlayer/Camera:current")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 0.8, 3, 4.7 )
+
+[node name="The Facility" type="Spatial"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlayerSpawn" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0.04, 0 )
+
+[node name="Building" type="Spatial" parent="."]
+
+[node name="Floors" type="Spatial" parent="Building"]
+
+[node name="Main Floor" type="CSGBox" parent="Building/Floors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0 )
+use_collision = true
+width = 42.0
+height = 0.0543952
+depth = 10.0
+material = ExtResource( 1 )
+
+[node name="FakeRoomFloor" type="CSGBox" parent="Building/Floors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 0, -8.9 )
+use_collision = true
+width = 4.0
+height = 0.0543952
+depth = 7.8
+material = ExtResource( 1 )
+
+[node name="Walls" type="Spatial" parent="Building"]
+
+[node name="CSGBox2" type="CSGBox" parent="Building/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 0 )
+use_collision = true
+width = 0.1
+height = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Building/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4, 0 )
+use_collision = true
+width = 0.1
+height = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Building/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 4, 0 )
+use_collision = true
+width = 0.1
+height = 8.0
+depth = 10.0
+material = ExtResource( 3 )
+
+[node name="Vent" type="Spatial" parent="Building/Walls"]
+
+[node name="CSGBox7" type="CSGBox" parent="Building/Walls/Vent"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25, 2.8, 28.956 )
+use_collision = true
+width = 48.0
+height = 0.2
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Building/Walls/Vent"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25, 0.8, 28.956 )
+use_collision = true
+width = 48.0
+height = 0.2
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="CSGBox9" type="CSGBox" parent="Building/Walls/Vent"]
+transform = Transform( 1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -24, 1.8, 28.956 )
+use_collision = true
+width = 48.0
+height = 0.2
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="CSGBox10" type="CSGBox" parent="Building/Walls/Vent"]
+transform = Transform( 1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -26, 1.8, 28.956 )
+use_collision = true
+width = 48.0
+height = 0.2
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="CSGBox11" type="CSGBox" parent="Building/Walls/Vent"]
+transform = Transform( 1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -25, 1.8, 52.956 )
+use_collision = true
+height = 0.2
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="Wall and Entrance" type="CSGCombiner" parent="Building/Walls/Vent"]
+use_collision = true
+
+[node name="CSGBox3" type="CSGBox" parent="Building/Walls/Vent/Wall and Entrance"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, 4, 5 )
+use_collision = true
+width = 0.1
+height = 8.0
+depth = 42.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7_VENT" type="CSGBox" parent="Building/Walls/Vent/Wall and Entrance"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25, 1.7, 5 )
+operation = 2
+use_collision = true
+width = 0.2
+height = 1.9
+depth = 1.9
+material = ExtResource( 3 )
+
+[node name="FakeEntrance" type="Spatial" parent="Building/Walls"]
+
+[node name="CSGBox6" type="CSGBox" parent="Building/Walls/FakeEntrance"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -6.3, 2, -8.95988 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 8.0
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Building/Walls/FakeEntrance"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2.3, 2, -8.95988 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 8.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Building/Walls/FakeEntrance"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.3, 2, -12.8599 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 4.4
+material = ExtResource( 3 )
+
+[node name="Wall and Entrance" type="CSGCombiner" parent="Building/Walls/FakeEntrance"]
+use_collision = true
+
+[node name="CSGBox4" type="CSGBox" parent="Building/Walls/FakeEntrance/Wall and Entrance"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, 4, -5 )
+use_collision = true
+width = 0.1
+height = 8.0
+depth = 42.0
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Building/Walls/FakeEntrance/Wall and Entrance"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.3, 1.2, -5 )
+operation = 2
+use_collision = true
+width = 0.1
+height = 2.4
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Ceillings" type="Spatial" parent="Building"]
+
+[node name="Main Ceilling" type="CSGBox" parent="Building/Ceillings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8, 0 )
+use_collision = true
+width = 44.0
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="FakeRoomCeiling" type="CSGBox" parent="Building/Ceillings"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 4, -8.9 )
+use_collision = true
+width = 4.0
+height = 0.0543952
+depth = 7.8
+material = ExtResource( 1 )
+
+[node name="Lights" type="Spatial" parent="Building"]
+
+[node name="SpotLight" type="SpotLight" parent="Building/Lights"]
+transform = Transform( 0.965926, -1.13133e-08, 0.258819, -0.258819, -4.2222e-08, 0.965926, 0, -1, -4.37114e-08, -29, 7.1, 0 )
+light_color = Color( 0.815686, 0.921569, 1, 1 )
+light_energy = 3.0
+spot_range = 12.0
+spot_angle = 60.0
+spot_angle_attenuation = 0.8
+
+[node name="Decoration" type="Spatial" parent="Building"]
+
+[node name="Table" type="StaticBody" parent="Building/Decoration"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7, 0.6, 4.7 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Decoration/Table"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0 )
+modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
+pixel_size = 0.0015
+shaded = true
+texture = ExtResource( 20 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Building/Decoration/Table"]
+shape = SubResource( 11 )
+
+[node name="ExitSign" type="Sprite3D" parent="Building/Decoration"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -36.94, 1.4, 0.9 )
+flip_v = true
+pixel_size = 0.0015
+texture = ExtResource( 23 )
+
+[node name="Props" type="Spatial" parent="Building"]
+
+[node name="Paper Pickup" parent="Building/Props" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -10.7, 1.1, 4.7 )
+text = "Subject 02: The only successful transformation out of the 3 subjects.
+
+Subject is wearing a specialized plague doctor-esc costume; required due to it's facial deformations.
+
+Subject wasn't very cooperative before the transformation. It now does seem to want to respond.
+
+Experiment status:
+[SUCCESS]
+Side-effects: Increased speed/strength and a thirst for violence."
+
+[node name="Facility Entrance Door" parent="Building/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.1, 0 )
+locked = true
+
+[node name="Door" parent="Building/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.1, 0 )
+
+[node name="FakeDoor" parent="Building/Props" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.4, 1.1, -12.8 )
+
+[node name="EscapeDoor" parent="Building/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 1.1, 0 )
+levelTransition = ExtResource( 6 )
+
+[node name="EscapeDoorBlockage" type="StaticBody" parent="Building/Props" groups=["interactable"]]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -36.6, 11, 0 )
+script = ExtResource( 8 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Props/EscapeDoorBlockage"]
+transform = Transform( 1.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+pixel_size = 0.005
+shaded = true
+texture = ExtResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Building/Props/EscapeDoorBlockage"]
+shape = SubResource( 1 )
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="Building/Props/EscapeDoorBlockage"]
+visible = false
+stream = ExtResource( 9 )
+unit_db = 4.0
+unit_size = 8.0
+pitch_scale = 0.6
+
+[node name="FakeDoorBlockage" type="StaticBody" parent="Building/Props"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.3, 1.25, -5.05 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Props/FakeDoorBlockage"]
+transform = Transform( 1.25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+pixel_size = 0.0032
+shaded = true
+texture = ExtResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Building/Props/FakeDoorBlockage"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999 )
+shape = SubResource( 12 )
+
+[node name="Vent AMONGUS" type="StaticBody" parent="Building/Props" groups=["interactable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.8, 4.9 )
+script = ExtResource( 10 )
+
+[node name="Model" type="Spatial" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( 1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0.9, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Props/Vent AMONGUS/Model"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2.38419e-07 )
+pixel_size = 0.0038
+shaded = true
+texture = ExtResource( 11 )
+
+[node name="ModelArms" type="Spatial" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( 1, 0, 0, 0, 0.883883, 0.707107, 0, -0.883883, 0.707107, 0, -0.9, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Props/Vent AMONGUS/ModelArms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.9, 0.7, -0.0999999 )
+modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
+pixel_size = 0.0038
+shaded = true
+texture = ExtResource( 12 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="Building/Props/Vent AMONGUS/ModelArms"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.9, 0.7, -0.0999999 )
+modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
+pixel_size = 0.0038
+shaded = true
+texture = ExtResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.2 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( 1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0.6, -1 )
+shape = SubResource( 5 )
+
+[node name="CloseSFX" type="AudioStreamPlayer3D" parent="Building/Props/Vent AMONGUS"]
+stream = ExtResource( 9 )
+unit_db = -2.0
+unit_size = 2.0
+pitch_scale = 0.7
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Building/Props/Vent AMONGUS"]
+anims/CloseVent = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Enemies" type="Spatial" parent="Building"]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Building/Enemies"]
+root_node = NodePath("../PlagueDoctor")
+anims/Attack = SubResource( 6 )
+anims/Intro = SubResource( 10 )
+anims/Jumpscare = SubResource( 8 )
+anims/RESET = SubResource( 7 )
+
+[node name="CutsceneStartTrigger" type="Area" parent="Building/Enemies/AnimPlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8, 1.3, -0.1 )
+script = ExtResource( 17 )
+animationName = "Intro"
+
+[node name="CollisionShape" type="CollisionShape" parent="Building/Enemies/AnimPlayer/CutsceneStartTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+shape = SubResource( 9 )
+
+[node name="Jumpscare" type="Spatial" parent="Building/Enemies"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -4.8, 3.5 )
+
+[node name="PlagueDoctor" type="Sprite3D" parent="Building/Enemies/Jumpscare"]
+flip_h = true
+pixel_size = 0.0017
+texture = ExtResource( 13 )
+
+[node name="Audio" type="AudioStreamPlayer" parent="Building/Enemies/Jumpscare"]
+stream = ExtResource( 16 )
+volume_db = 6.0
+
+[node name="BangBangFRAPAPAPAP" type="AudioStreamPlayer" parent="Building/Enemies/Jumpscare"]
+stream = ExtResource( 9 )
+pitch_scale = 0.8
+
+[node name="Camera" type="Camera" parent="Building/Enemies/Jumpscare"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.2, -1 )
+current = true
+script = ExtResource( 22 )
+
+[node name="PlagueDoctor" type="Spatial" parent="Building/Enemies"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.7, 52 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="Building/Enemies/PlagueDoctor"]
+flip_h = true
+pixel_size = 0.0017
+shaded = true
+texture = ExtResource( 13 )
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="Building/Enemies/PlagueDoctor"]
+stream = ExtResource( 9 )
+unit_db = -4.0
+unit_size = 0.6
+pitch_scale = 0.8
+
+[node name="Bark" type="AudioStreamPlayer3D" parent="Building/Enemies/PlagueDoctor"]
+stream = ExtResource( 14 )
+unit_db = 2.0
+unit_size = 3.0
+pitch_scale = 0.4
+
+[node name="OmniLight" type="OmniLight" parent="Building/Enemies/PlagueDoctor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4 )
+light_color = Color( 0.686275, 0.396078, 0.396078, 1 )
+light_energy = 0.0
+
+[node name="DummyPlayer" type="Spatial" parent="Building/Enemies"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, 1.5, 0 )
+
+[node name="Subtitle" parent="Building/Enemies/DummyPlayer" instance=ExtResource( 18 )]
+
+[node name="Camera" type="Camera" parent="Building/Enemies/DummyPlayer"]
+script = ExtResource( 22 )
+
+[node name="Intercom" type="AudioStreamPlayer3D" parent="Building/Enemies"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4, 5, 3 )
+stream = ExtResource( 19 )
+unit_db = -4.0
+unit_size = 12.0
+
+[node name="Events" type="Spatial" parent="."]
+
+[node name="Intro" type="Spatial" parent="Events"]
+
+[node name="DoorBanging" type="AudioStreamPlayer3D" parent="Events/Intro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, 0 )
+unit_size = 2.0
+autoplay = true

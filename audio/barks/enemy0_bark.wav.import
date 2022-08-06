@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy0_bark.wav-79c370030d027709336bf408d035d9a0.sample"
+
+[deps]
+
+source_file="res://audio/barks/enemy0_bark.wav"
+dest_files=[ "res://.import/enemy0_bark.wav-79c370030d027709336bf408d035d9a0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

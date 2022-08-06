@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/unpretentious_reveal_drakensson.mp3-c3094bf9e5b13c98c0adac26948ce89e.mp3str"
+
+[deps]
+
+source_file="res://audio/music/unpretentious_reveal_drakensson.mp3"
+dest_files=[ "res://.import/unpretentious_reveal_drakensson.mp3-c3094bf9e5b13c98c0adac26948ce89e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
