@@ -6,11 +6,13 @@ namespace Project
     {
         // Nodes
         private RichTextLabel credit;
+        private AnimationPlayer backgroundMovement;
 
         public override void _Ready()
         {
             // Getting nodes
             credit = GetNode<RichTextLabel>("Credit");
+            backgroundMovement = GetNode<AnimationPlayer>("BackgroundMovement");
 
             // Doing stuff with nodes
             credit.Connect("meta_clicked", this, nameof(_OnLinkClicked));
@@ -19,10 +21,13 @@ namespace Project
             OS.MinWindowSize = new Vector2(1200, 650);
 
             // For when the game resets
-            Input.SetMouseMode(Input.MouseMode.Visible);
+            Input.MouseMode = Input.MouseModeEnum.Visible;
 
             // Maximizing window because yes
             OS.WindowMaximized = true;
+
+            // Animation player go brr
+            backgroundMovement.Play("BackgroundMovement");
         }
 
         public void _OnLinkClicked(string meta)

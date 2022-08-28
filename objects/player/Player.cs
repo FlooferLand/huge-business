@@ -26,6 +26,7 @@ namespace Project
         public readonly Vector3 HEAD_POS_OFFSET = new Vector3(0f, 1.6f, 0f);
         public readonly Vector3 ITEMS_POS_OFFSET = new Vector3(0f, 1.5f, 0f);
         public float screenShake = 0f;
+        public bool shakePunching = false;
         public bool canMove = true;
 
         // Variables
@@ -53,7 +54,7 @@ namespace Project
             subtitle = GetNode<Subtitle>("Head/Camera/UI/Subtitle");
 
             // Locking cursor
-            Input.SetMouseMode(Input.MouseMode.Captured);
+            Input.MouseMode = Input.MouseModeEnum.Captured;
 
             // Adding the player and the UI to the Global container
             Global.player = this;
@@ -70,11 +71,22 @@ namespace Project
         {
             // Locking/Unlocking cursor
             if (Input.IsActionJustPressed("ui_cancel"))
-                Input.SetMouseMode(2 - Input.GetMouseMode());
+                Input.MouseMode = (2 - Input.MouseMode);
 
             // Fullscreen toggle
             if (Input.IsActionJustPressed("fullscreen_toggle"))
                 OS.WindowFullscreen = !OS.WindowFullscreen;
+
+            // Handling shake punch
+            if (shakePunching && screenShake > 0.1f)
+            {
+                screenShake = Mathf.Lerp(screenShake, 0f, 0.1f);
+            }
+            else if (shakePunching && screenShake <= 0.1f)
+            {
+                shakePunching = false;
+                screenShake = 0f;
+            }
 
             // Player movement disable
             if (!canMove)
@@ -153,12 +165,36 @@ namespace Project
             }
 
             // Shakiness
-            headRot += new Vector3(
-                Mathf.Deg2Rad(Global.rng.RandfRange(-screenShake, screenShake)),
-                Mathf.Deg2Rad(Global.rng.RandfRange(-screenShake, screenShake)),
-                Mathf.Deg2Rad(Global.rng.RandfRange(-screenShake, screenShake))
-            );
+            if (screenShake > 0f)
+            {
+                Vector3 rotAppend = new Vector3(
+                    Global.rng.RandfRange(-screenShake, screenShake) * 2f,
+                    Global.rng.RandfRange(-screenShake, screenShake) * 1.5f,
+                    Global.rng.RandfRange(-screenShake, screenShake) * 1.5f
+                );
 
+                // Safety switch (if the rotation is above a certain number)
+                if ((camera.RotationDegrees + rotAppend).Abs() > (Vector3.One * 10))
+                {
+                    camera.RotationDegrees = new Vector3(
+                        Mathf.Lerp(camera.RotationDegrees.x, 0f, delta * 25f),
+                        Mathf.Lerp(camera.RotationDegrees.y, 0f, delta * 25f),
+                        Mathf.Lerp(camera.RotationDegrees.z, 0f, delta * 25f)
+                    );
+                }
+                else
+                {
+                    camera.RotationDegrees += rotAppend;
+                }
+            }
+            else
+            {
+                camera.RotationDegrees = new Vector3(
+                    Mathf.Lerp(camera.RotationDegrees.x, 0f, delta * 5f),
+                    Mathf.Lerp(camera.RotationDegrees.y, 0f, delta * 5f),
+                    Mathf.Lerp(camera.RotationDegrees.z, 0f, delta * 5f)
+                );
+            }
 
             head.Rotation = headRot;
             head.Translation = headPos + HEAD_POS_OFFSET;
@@ -265,7 +301,7 @@ namespace Project
                 return;
             
             // Head movement
-            if (@event is InputEventMouseMotion mouseMotion && Input.GetMouseMode() == Input.MouseMode.Captured)
+            if (@event is InputEventMouseMotion mouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
             {
                 // Magic i found on the Godot forums
                 RotateY(Mathf.Deg2Rad(-mouseMotion.Relative.x * TURN_SPEED));
@@ -283,6 +319,12 @@ namespace Project
             subtitle.Write(text);
             voicePlayer.Stream = clip;
             voicePlayer.Play();
+        }
+
+        public void ShakePunch(float intensity)
+        {
+            screenShake = intensity;
+            shakePunching = true;
         }
     }
 }

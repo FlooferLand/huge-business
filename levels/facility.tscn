@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://materials/workspace_floor.material" type="Material" id=1]
 [ext_resource path="res://objects/player/PlayerSpawn.tscn" type="PackedScene" id=2]
@@ -23,6 +23,9 @@
 [ext_resource path="res://objects/paper_pickup/Paper Pickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scripts/TheCurrentPropertyIsCringe.cs" type="Script" id=22]
 [ext_resource path="res://textures/exit_sign.jpg" type="Texture" id=23]
+[ext_resource path="res://fonts/MainFancy.tres" type="DynamicFont" id=24]
+[ext_resource path="res://textures/lockpick.png" type="Texture" id=25]
+[ext_resource path="res://scripts/editor/InvisInGame.cs" type="Script" id=26]
 
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 1, 0.5, 0.3 )
@@ -34,7 +37,7 @@ extents = Vector3( 3.4, 2, 0.1 )
 extents = Vector3( 2, 1.2, 0.1 )
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 1.1, 1, 0.3 )
+extents = Vector3( 1.2, 1.1, 0.2 )
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 1.3, 1.2, 0.1 )
@@ -900,6 +903,15 @@ spot_range = 12.0
 spot_angle = 60.0
 spot_angle_attenuation = 0.8
 
+[node name="VentAttentionLight" type="SpotLight" parent="Building/Lights"]
+transform = Transform( -1, 0, -8.74228e-08, -4.37114e-08, 0.866025, 0.5, 7.57103e-08, 0.5, -0.866025, -25.038, 4, -0.00533199 )
+light_color = Color( 1, 0.741176, 0.741176, 1 )
+light_energy = 2.0
+spot_range = 10.0
+spot_angle = 35.0
+spot_angle_attenuation = 0.615572
+script = ExtResource( 26 )
+
 [node name="Decoration" type="Spatial" parent="Building"]
 
 [node name="Table" type="StaticBody" parent="Building/Decoration"]
@@ -923,6 +935,19 @@ texture = ExtResource( 23 )
 
 [node name="Props" type="Spatial" parent="Building"]
 
+[node name="LockpickHint" type="Sprite3D" parent="Building/Props"]
+transform = Transform( 6.03983e-08, -0.8, -3.49691e-08, 0, -3.49691e-08, 0.8, -0.8, -6.03983e-08, -2.64009e-15, -33.9392, 0.109093, 0.1 )
+pixel_size = 0.005
+texture = ExtResource( 25 )
+script = ExtResource( 26 )
+
+[node name="LockpickHint" type="Sprite3D" parent="Building/Props/LockpickHint"]
+transform = Transform( 1, -1.31134e-07, -8.74227e-08, 1.31134e-07, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -7.7486e-07, 0, -0.0813344 )
+modulate = Color( 0.364706, 0.364706, 0.364706, 1 )
+opacity = 0.7
+pixel_size = 0.006
+texture = ExtResource( 25 )
+
 [node name="Paper Pickup" parent="Building/Props" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -10.7, 1.1, 4.7 )
 text = "Subject 02: The only successful transformation out of the 3 subjects.
@@ -939,7 +964,7 @@ Side-effects: Increased speed/strength and a thirst for violence."
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.1, 0 )
 locked = true
 
-[node name="Door" parent="Building/Props" instance=ExtResource( 4 )]
+[node name="EndSequenceDoor" parent="Building/Props" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.1, 0 )
 
 [node name="FakeDoor" parent="Building/Props" instance=ExtResource( 4 )]
@@ -1033,6 +1058,29 @@ pitch_scale = 0.7
 anims/CloseVent = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
+[node name="Name" type="Label3D" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0, -1.4, -4.76837e-07 )
+pixel_size = 0.005
+shaded = true
+text = "VENT TUNNEL"
+font = ExtResource( 24 )
+
+[node name="Subname" type="Label3D" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0, -1.56, 0 )
+pixel_size = 0.002
+shaded = true
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "CROSS-ROOM NAVIGATION ROUTE"
+font = ExtResource( 24 )
+
+[node name="Warning" type="Label3D" parent="Building/Props/Vent AMONGUS"]
+transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0, -1.64445, 0 )
+pixel_size = 0.0009
+shaded = true
+modulate = Color( 0.282353, 0.282353, 0.282353, 1 )
+text = "deaths beyond this point are not responsibility of Huge Business INC."
+font = ExtResource( 24 )
+
 [node name="Enemies" type="Spatial" parent="Building"]
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="Building/Enemies"]
@@ -1048,7 +1096,7 @@ script = ExtResource( 17 )
 animationName = "Intro"
 
 [node name="CollisionShape" type="CollisionShape" parent="Building/Enemies/AnimPlayer/CutsceneStartTrigger"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699999, 1.8, 0 )
 shape = SubResource( 9 )
 
 [node name="Jumpscare" type="Spatial" parent="Building/Enemies"]
@@ -1069,7 +1117,6 @@ pitch_scale = 0.8
 
 [node name="Camera" type="Camera" parent="Building/Enemies/Jumpscare"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.2, -1 )
-current = true
 script = ExtResource( 22 )
 
 [node name="PlagueDoctor" type="Spatial" parent="Building/Enemies"]

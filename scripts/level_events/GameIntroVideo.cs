@@ -13,7 +13,7 @@ namespace Project
         {
             video = GetNode<VideoPlayer>("VideoPlayer");
             video.Connect("finished", this, nameof(_OnVideoFinished));
-            Input.SetMouseMode(Input.MouseMode.Captured);
+            Input.MouseMode = Input.MouseModeEnum.Captured;
 
             startTimer = GetNode<Timer>("StartTimer");
             startTimer.Connect("timeout", this, nameof(_StartVideo));

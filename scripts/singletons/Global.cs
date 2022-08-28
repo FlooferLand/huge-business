@@ -15,6 +15,7 @@ namespace Project
         public static DialogueHandler dialogueHandler;
         public static PaperHandler    paperHandler;
         public static InteractionProgress interactionProgress;
+        public static CutsceneSkipper cutsceneSkipper;
 
         // Facility nodes
         public static TheFacilityEvents facilityEvents;

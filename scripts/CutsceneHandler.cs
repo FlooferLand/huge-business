@@ -35,8 +35,17 @@ namespace Project
             }
         }
 
+        public override void _Process(float delta)
+        {
+            if (parent.IsPlaying() && Input.IsActionJustPressed("skip"))
+            {
+                Global.cutsceneSkipper.Start(parent);
+            }
+        }
+
         public void _AnimFinished(string animName)
         {
+            Global.cutsceneSkipper.Stop(parent);
             if (animName == "RESET")
                 return;
 

@@ -15,6 +15,7 @@ namespace Project
                 GetNode("Crosshairs").GetChild<Control>(1)  // Grab
             };
 
+            // Getting some UI nodes..
             Global.interactionProgress = GetNode<InteractionProgress>("InteractionProgress");
         }
     }

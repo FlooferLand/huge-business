@@ -5,6 +5,9 @@ namespace Project
 {
     public class EscapeDoorBlockage : StaticBody, IBaseInteractable, IBaseProgressable
     {
+        // Signals
+        [Signal] public delegate void on_interact();
+
         // Nodes
         private AudioStreamPlayer3D streamPlayer;
 
@@ -33,6 +36,7 @@ namespace Project
             Global.interactionProgress.AddProgress(1);
             streamPlayer.PitchScale = Global.rng.RandfRange(0.95f, 1.05f);
             streamPlayer.Play();
+            EmitSignal(nameof(on_interact));
         }
     }
 }

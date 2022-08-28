@@ -9,6 +9,8 @@ namespace Project
         public Spatial events;
         public AnimationPlayer animPlayer;
         public StaticBody escapeDoorBlockage;
+        public Spatial lockpickHint;
+        public Spatial ventAttentionLight;
         public Camera dummyPlayerCamera;
         public Camera jumpscareCamera;
 
@@ -18,6 +20,8 @@ namespace Project
             animPlayer = GetNode<AnimationPlayer>("Building/Enemies/AnimPlayer");
             animPlayer.Connect("animation_finished", this, nameof(_OnAnimFinished));
             escapeDoorBlockage = GetNode<StaticBody>("Building/Props/EscapeDoorBlockage");
+            lockpickHint = GetNode<Spatial>("Building/Props/LockpickHint");
+            ventAttentionLight = GetNode<Spatial>("Building/Lights/VentAttentionLight");
             dummyPlayerCamera = GetNode<Camera>("Building/Enemies/DummyPlayer/Camera");
             jumpscareCamera = GetNode<Camera>("Building/Enemies/Jumpscare/Camera");
             Global.facilityEvents = this;
@@ -25,6 +29,9 @@ namespace Project
             // Something i have to do because Godot is annoying and makes it so when it detects there's no camera set as "current" it forcefully makes a random camera current.
             dummyPlayerCamera.ClearCurrent(false);
             jumpscareCamera.ClearCurrent(false);
+
+            // signal signal signal signal signal signal signal signal signal signal signal signal
+            escapeDoorBlockage.Connect(nameof(EscapeDoorBlockage.on_interact), this, nameof(_OnEscapeDoorBlockageInteract));
 
             // Intro events go brr
             Global.player.Speak(SoundEffects.playerVoiceLines[0], "Thank Huge Business, i am safe now.");
@@ -46,6 +53,10 @@ namespace Project
                         2,
                         escapeDoorBlockage.Translation.z
                     );
+                    GetNode<BaseDoor>("Building/Props/EndSequenceDoor").locked = true;
+                    lockpickHint.Visible = true;
+                    ventAttentionLight.Visible = true;
+
                     Global.plagueDoctor.canStartAttacking = true;
                     Global.plagueDoctor.StartAttacking();
                     break;
@@ -61,6 +72,11 @@ namespace Project
         {
             jumpscareCamera.Current = true;
             animPlayer.Play("Jumpscare");
+        }
+
+        public void _OnEscapeDoorBlockageInteract()
+        {
+            lockpickHint.Visible = false;
         }
     }
 }
