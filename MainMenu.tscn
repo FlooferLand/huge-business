@@ -202,13 +202,17 @@ expand_icon = true
 [node name="Credit" type="RichTextLabel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -70.0
-margin_right = 1197.0
+margin_left = 6.0
+margin_top = -106.0
+margin_right = 1203.0
+margin_bottom = -1.0
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "Made by [url=https://flooferland.itch.io/]FlooferLand[/url] for the [url=https://itch.io/jam/out-of-stock]Out Of Stock[/url] game jam!
+bbcode_text = "(Slightly) remastered edition
+Originally made by [url=https://flooferland.itch.io/]FlooferLand[/url] for the [url=https://itch.io/jam/out-of-stock]Out Of Stock[/url] game jam!
 Almost all assets are from Pexels and FreeSound [color=gray](chase music made by me)[/color]"
-text = "Made by FlooferLand for the Out Of Stock game jam!
+text = "(Slightly) remastered edition
+Originally made by FlooferLand for the Out Of Stock game jam!
 Almost all assets are from Pexels and FreeSound (chase music made by me)"
 fit_content_height = true
 scroll_active = false

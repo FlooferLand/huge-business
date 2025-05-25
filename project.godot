@@ -71,6 +71,10 @@ skip={
  ]
 }
 
+[mono]
+
+project/assembly_name="Stock Photo Game"
+
 [physics]
 
 common/physics_fps=100
