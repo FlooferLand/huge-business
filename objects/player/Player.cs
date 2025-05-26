@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 namespace Project
@@ -9,13 +8,13 @@ namespace Project
         // Nodes
         public  Spatial head = null;
         public  Camera camera = null;
-        private Spatial items = null;
+        Spatial items = null;
         public  Spatial flashlight = null;
-        private AudioStreamPlayer footstepPlayer = null;
-        private AudioStreamPlayer voicePlayer = null;
-        private Timer footstepTimer = null;
-        private RayCast interactRay = null;
-        private Subtitle subtitle = null;
+        AudioStreamPlayer footstepPlayer = null;
+        AudioStreamPlayer voicePlayer = null;
+        Timer footstepTimer = null;
+        RayCast interactRay = null;
+        Subtitle subtitle = null;
 
         // Constants
         const float SPEED      = 2.5f;

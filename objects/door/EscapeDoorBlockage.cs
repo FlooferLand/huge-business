@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace Project
 {
@@ -9,7 +8,7 @@ namespace Project
         [Signal] public delegate void on_interact();
 
         // Nodes
-        private AudioStreamPlayer3D streamPlayer;
+        AudioStreamPlayer3D streamPlayer;
 
         // Variables
         public int progress = 0;

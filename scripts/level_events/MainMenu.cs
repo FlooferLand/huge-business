@@ -5,8 +5,8 @@ namespace Project
 	public class MainMenu : Control
 	{
 		// Nodes
-		private RichTextLabel credit;
-		private AnimationPlayer backgroundMovement;
+		RichTextLabel credit;
+		AnimationPlayer backgroundMovement;
 
 		public override void _Ready()
 		{

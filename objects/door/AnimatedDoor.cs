@@ -1,13 +1,12 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class AnimatedDoor : BaseDoor
     {
         // Nodes
-        private Spatial model;
-        private AudioStreamPlayer sound;
+        Spatial model;
+        AudioStreamPlayer sound;
 
         // Export variables
         [Export] public bool flipModel = false;

@@ -3,11 +3,13 @@ builds/
 addons/
 
 # Godot-specific ignores
+.godot/
 .import/
 export.cfg
 export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+.idea/
 .vs/
 data_*/

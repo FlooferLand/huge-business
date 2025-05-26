@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class PaperHandler : TextureRect
     {
         // Nodes
-        private Label label;
+        Label label;
 
         public override void _Ready()
         {

@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class JumpscareOnCollision : Area
     {
         // Nodes
-        private AnimationPlayer animPlayer;
+        AnimationPlayer animPlayer;
 
         public override void _Ready()
         {

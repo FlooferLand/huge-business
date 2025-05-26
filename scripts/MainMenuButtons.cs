@@ -1,14 +1,13 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class MainMenuButtons : VBoxContainer
     {
         // Nodes
-        private Button fullscreenToggle;
-        private Button startGameButton;
-        private Button quitGameButton;
+        Button fullscreenToggle;
+        Button startGameButton;
+        Button quitGameButton;
 
         public override void _Ready()
         {

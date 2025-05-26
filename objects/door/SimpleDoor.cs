@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class SimpleDoor : BaseDoor
     {
         // Nodes
-        private AudioStreamPlayer sound;
+        AudioStreamPlayer sound;
 
         public override void _Ready()
         {

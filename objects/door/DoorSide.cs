@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class DoorSide : StaticBody, IBaseInteractable
     {
         // Nodes
-        private BaseDoor parent;
+        BaseDoor parent;
 
         // Variables
         public enum SIDES { Front, Back }

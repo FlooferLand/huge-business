@@ -1,12 +1,11 @@
 using Godot;
-using System;
 
 namespace Project
 {
     public class BlackoutHandler : ColorRect
     {
         // Nodes
-        private Timer timer;
+        Timer timer;
 
         // Signals
         [Signal] public delegate void end(string reason);
@@ -47,7 +46,7 @@ namespace Project
             }
         }
 
-        private void _Timeout()  // blackout starts fadeing out
+        void _Timeout()  // blackout starts fadeing out
         {
             state = STATE.FadingOut;
             EmitSignal(nameof(end), reason);
