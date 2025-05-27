@@ -18,6 +18,10 @@ namespace Project
         {
             if (!(body is Player))
                 return;
+            PlayJumpscare();
+        }
+
+        public void PlayJumpscare() {
             animPlayer.Play("Jumpscare");
         }
 

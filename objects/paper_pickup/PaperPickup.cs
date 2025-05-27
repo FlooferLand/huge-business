@@ -4,6 +4,8 @@ namespace Project
 {
     public class PaperPickup : StaticBody, IBaseInteractable
     {
+        [Signal] public delegate void on_pickup();
+
         // Export Variables
         [Export(PropertyHint.MultilineText)] public string text = "None";
         [Export] public bool disappearsOnPickup = false;
@@ -22,6 +24,7 @@ namespace Project
             Global.paperHandler.Write(text);
             if (disappearsOnPickup)
                 QueueFree();
+            EmitSignal(nameof(on_pickup));
         }
     }
 }

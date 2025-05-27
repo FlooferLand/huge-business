@@ -16,6 +16,8 @@ namespace Project
         RayCast interactRay = null;
         Subtitle subtitle = null;
 
+        const bool DEV_DEBUG_MODE = false;
+
         // Constants
         const float SPEED      = 2.5f;
         const float TURN_SPEED = 0.15f;  // 1.8f
@@ -62,8 +64,14 @@ namespace Project
             // Subtitle stuff!!!
             voicePlayer.Connect("finished", subtitle, nameof(subtitle.End));
 
-            // Flashlight go no
+            // Flashlight (and UI) go no
             flashlight.Visible = false;
+            Global.interactionIndicator.Visible = false;
+
+            // DEBUG
+            if (isDebugging()) {
+                GetViewport().DebugDraw = Viewport.DebugDrawEnum.Unshaded;
+            }
         }
 
         public override void _Process(float delta)
@@ -164,7 +172,7 @@ namespace Project
             }
 
             // Shakiness
-            if (screenShake > 0f)
+            if (screenShake > 0f && !isDebugging())
             {
                 Vector3 rotAppend = new Vector3(
                     Global.rng.RandfRange(-screenShake, screenShake) * 2f,
@@ -230,40 +238,57 @@ namespace Project
             }
 
             // Interacting with stuff
-            if (interactRay.IsColliding())
-            {
-                Spatial obj = interactRay.GetCollider() as Spatial;
-                if (obj == null)
+            if (interactRay.IsColliding()) {
+                if (!(interactRay.GetCollider() is Spatial obj))
                     return;
 
-                bool isObjectInteractable = obj.IsInGroup("interactable");
-                if (isObjectInteractable && Input.IsActionJustPressed("interact"))
+                bool canInteract = true;
+                if (obj is IMightNotInteract mightNotInteract) {
+                    canInteract = mightNotInteract.CanInteract();
+                }
+                canInteract = canInteract && obj.Visible;
+
+                bool pressingInteract = Input.IsActionJustPressed("interact");
+                bool isObjectInteractable = obj.IsInGroup("interactable") && canInteract;
+                if (isObjectInteractable)
                 {
-                    if (obj is IBaseUnlockable || obj is DoorSide)
+                    DoorSide doorSide = null;
+                    if (obj is DoorSide side) {
+                        doorSide = side;
+                        obj = side.GetParent<Spatial>();
+                    }
+                    if (obj is IBaseUnlockable unlockable)
                     {
-                        DoorSide side = (DoorSide)obj;
-                        if (obj is DoorSide)
+                        // Locked text
+                        if (unlockable.IsLocked())
                         {
-                            obj = obj.GetParent<Spatial>();
+                            Global.interactionIndicator.Text = "Locked";
+                            Global.interactionIndicator.Visible = true;
+                        } else {
+                            Global.interactionIndicator.Visible = false;
                         }
 
-                        for (int i = 0; i < keys.Count; i++)
-                        {
-                            KeyObject key = keys[i];
-                            key.TryUse(obj);
-                        }
-
-                        if (side != null)
-                        {
-                            side.Interact();
-                            return;
+                        if (pressingInteract) {
+                            if (unlockable.IsLocked()) {
+                                KeyObject correctKey = null;
+                                foreach (var key in keys) {
+                                    if (key.CanUseOn(obj)) {
+                                        correctKey = key;
+                                        break;
+                                    }
+                                }
+                                correctKey?.TryUse(obj);
+                            }
+                            doorSide?.Interact();
                         }
                     }
 
-                    if (!(obj is BaseDoor))
-                    {
-                        (obj as IBaseInteractable).Interact();
+                    if (pressingInteract) {
+                        if (!(obj is BaseDoor) && obj is IBaseInteractable interactable)
+                            interactable.Interact();
                     }
+                } else {
+                    Global.interactionIndicator.Visible = false;
                 }
 
                 // Graphical stuff
@@ -276,6 +301,7 @@ namespace Project
                 // Graphical stuff
                 Global.interactionProgress.Visible = false;
                 Global.ui.crosshairs[0].Visible = false;
+                Global.interactionIndicator.Visible = false;
             }
 
             // Making it so movement speed won't increase when moving diagonaly
@@ -310,6 +336,10 @@ namespace Project
                 rotDeg.y = Mathf.Clamp(rotDeg.y, -50f, 50f);
                 head.RotationDegrees = rotDeg;
             }
+        }
+
+        public bool isDebugging() {
+            return (DEV_DEBUG_MODE && OS.HasFeature("editor"));
         }
 
         public void Speak(AudioStream clip, string text)

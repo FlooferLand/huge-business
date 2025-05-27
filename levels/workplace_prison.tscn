@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://materials/workspace_floor.material" type="Material" id=1]
 [ext_resource path="res://materials/workspace_wall.material" type="Material" id=2]
@@ -34,6 +34,13 @@
 [ext_resource path="res://textures/hide.png" type="Texture" id=32]
 [ext_resource path="res://scripts/TheCurrentPropertyIsCringe.cs" type="Script" id=33]
 [ext_resource path="res://audio/misc/employee_horde_footsteps.mp3" type="AudioStream" id=34]
+[ext_resource path="res://scripts/ChaseSection.cs" type="Script" id=35]
+[ext_resource path="res://audio/footsteps/footstep_2.wav" type="AudioStream" id=36]
+[ext_resource path="res://audio/footsteps/footstep_3.wav" type="AudioStream" id=37]
+[ext_resource path="res://audio/footsteps/im_walkin_ere.mp3" type="AudioStream" id=39]
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 2, 1.8, 0.1 )
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4.4, 2.4, 0.5 )
@@ -41,15 +48,15 @@ extents = Vector3( 4.4, 2.4, 0.5 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 6, 2, 0.3 )
 
-[sub_resource type="BoxShape" id=8]
-extents = Vector3( 2, 1.8, 0.1 )
-
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 1.2, 1, 0.1 )
 
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 1, 2.42928, 4.22728 )
+
 [sub_resource type="Animation" id=9]
 resource_name = "Chase"
-length = 19.5
+length = 25.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cutscenes/Chase/EmployeeHorde:translation")
 tracks/0/interp = 1
@@ -57,10 +64,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.2, 5.5, 5.6, 7.3, 7.4, 8.9, 9.6, 12, 14, 14.2, 14.8, 18.8, 19.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 8.4, 8.5, 10.5, 10.6, 13, 13.7, 17, 19, 19.2, 21.4, 23.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 3.3, 1.2, 20.5 ), Vector3( 3.3, 1.2, 19.3 ), Vector3( 3.3, 1.2, 5.5 ), Vector3( 3.3, 1.2, 3.6 ), Vector3( 3.3, 1.2, -3.6 ), Vector3( 4.3, 1.2, -5.4 ), Vector3( 4.3, 1.2, -17.4 ), Vector3( 2.7, 1.2, -17.9 ), Vector3( -14.2, 1.2, -17.9 ), Vector3( -22.3, 0.4, -17.9 ), Vector3( -24.7, 0.4, -17.9 ), Vector3( -24.9, 0.4, -17.9 ), Vector3( -24.9, 0.4, -5.2 ), Vector3( -25.1, 0.4, -5.2 ) ]
+"values": [ Vector3( 3.3, 1.2, 20.5 ), Vector3( 3.3, 1.2, 5.5 ), Vector3( 3.3, 1.2, 3.6 ), Vector3( 3.3, 1.2, -3.6 ), Vector3( 4.3, 1.2, -5.4 ), Vector3( 4.3, 1.2, -17.4 ), Vector3( 2.7, 1.2, -17.9 ), Vector3( -14.2, 1.2, -17.9 ), Vector3( -22.3, 0.4, -17.9 ), Vector3( -24.7, 0.4, -17.9 ), Vector3( -31.4495, 0.4, -15.1533 ), Vector3( -37.7553, 0.4, -14.5416 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Cutscenes/Chase/EmployeeHorde:rotation_degrees")
@@ -69,13 +76,13 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2.2, 5.5, 5.6, 7.3, 7.4, 8.9, 9.6, 12, 14, 14.2, 14.8, 18.8, 19.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 8.4, 8.5, 10.5, 10.6, 13, 13.7, 17, 19, 19.2, 21.4, 23.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 140, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 90, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 90, 0 ), Vector3( 0, 101.727, 0 ), Vector3( 0, 113.465, 0 ), Vector3( 0, 90, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Props/Hide Helper:visible")
+tracks/2/path = NodePath("CoreSection/Props/Hide Helper:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -85,6 +92,32 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cutscenes/Chase/EmployeeHorde/Sprites:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 21.4, 22.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 0.603, 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Cutscenes/Chase/EmployeeHorde")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 24.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "PlayJumpscare"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -97,10 +130,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7, 1.4, 6.3, 8.7, 10.8, 14, 14.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7, 1.4, 6.3, 8.7, 13.3, 14.5, 15.1, 21.2, 22.6, 26.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, -96.001, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -98.9419, 0 ), Vector3( 0, -112.619, 0 ), Vector3( 0, -98.9419, 0 ), Vector3( 0, -128.813, 0 ), Vector3( 0, -167.564, 0 ) ]
+"values": [ Vector3( 0, -96.001, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -102.833, 0 ), Vector3( 0, -109.991, 0 ), Vector3( 0, -112.619, 0 ), Vector3( 0, -107.914, 0 ), Vector3( 0, -128.813, 0 ), Vector3( 0, -167.564, 0 ), Vector3( 0, -167.564, 0 ), Vector3( 0, -75.178, 0 ), Vector3( 0, -132.346, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Cutscenes/ChaseIntro/EvilBoss:translation")
@@ -109,10 +142,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7, 1.4, 6.3, 8.7, 10.8, 14, 14.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7, 1.4, 6.3, 8.7, 13.3, 14.5, 15.1, 21.2, 22.6, 26.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.922002, 1.1, 18.8476 ), Vector3( 1.79845, 1.44402, 19.3504 ), Vector3( 2.48114, 1.11168, 19.3504 ), Vector3( 2.96987, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ) ]
+"values": [ Vector3( 0.922002, 1.1, 18.8476 ), Vector3( 1.79845, 1.44402, 19.3504 ), Vector3( 2.48114, 1.11168, 19.3504 ), Vector3( 2.96987, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.95313, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ), Vector3( 2.93977, 1.11168, 19.3504 ), Vector3( 6.73985, 1.11168, 19.3504 ) ]
 }
 tracks/2/type = "audio"
 tracks/2/path = NodePath("Cutscenes/ChaseIntro/EvilBoss/BossAudio")
@@ -171,7 +204,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 27.7, 28.3 ),
+"times": PoolRealArray( 0, 27.7, 29 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
@@ -248,27 +281,13 @@ tracks/9/keys = {
 "update": 0,
 "values": [ 0, 0, 0, 200, 0, 0, 200, 0, 200, 0, 200, 0 ]
 }
-tracks/10/type = "audio"
-tracks/10/path = NodePath("Cutscenes/ChaseIntro/Ambiance")
+tracks/10/type = "method"
+tracks/10/path = NodePath("Cutscenes/ChaseIntro/Subtitle")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"clips": [ {
-"end_offset": 89.992,
-"start_offset": 1.0,
-"stream": ExtResource( 17 )
-} ],
-"times": PoolRealArray( 0 )
-}
-tracks/11/type = "method"
-tracks/11/path = NodePath("Cutscenes/ChaseIntro/Subtitle")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
 "times": PoolRealArray( 2.5, 3.1, 3.4, 6.4, 6.9, 9.3, 9.7, 12, 12.3, 13.1, 13.4, 14.2, 14.5, 15.8, 19, 22, 26.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -324,49 +343,49 @@ tracks/11/keys = {
 "method": "End"
 } ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup/Camera:current")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
+tracks/11/type = "value"
+tracks/11/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer/Camera:current")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1.5, 6.5, 13.9, 14.5, 15.3, 16.3, 24.0078, 24.7262, 25.4, 26.1, 26.7, 26.9, 27.3, 29.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 5, 0 ), Vector3( 2.96205, -5.55444, -0.287923 ), Vector3( 2.57786, -3.72423, -0.262883 ), Vector3( 2.57786, -3.72423, -0.262883 ), Vector3( -0.493649, -3.72059, -0.063042 ), Vector3( -0.493649, -3.72059, -0.063042 ), Vector3( 2.57786, -3.72423, -0.262883 ), Vector3( 2.57786, -3.72423, -0.262883 ), Vector3( 2.57786, -10.6602, -0.262883 ), Vector3( 2.57786, 7.19346, -0.262883 ), Vector3( 2.57786, -10.6602, -0.262883 ), Vector3( 2.57786, -3.72423, -0.262883 ), Vector3( -4.36546, -3.7313, 0.189276 ), Vector3( -4.36546, -3.7313, 0.189276 ), Vector3( -4.36546, 0.0387037, 0.189276 ) ]
+}
 tracks/13/type = "value"
-tracks/13/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup:rotation_degrees")
+tracks/13/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer:translation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 1.5, 6.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1.5, 6.5, 13.9, 14.5, 15.3, 16.3, 24.0078, 26.7, 26.9, 27.3, 29.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 5, 0 ), Vector3( 2.96205, -5.55444, -0.287923 ), Vector3( 2.57786, -3.72423, -0.262883 ) ]
+"values": [ Vector3( 2.9, 1.2, 26.6 ), Vector3( 2.94623, 1.2, 26.6 ), Vector3( 2.94623, 1.17457, 26.6 ), Vector3( 2.94623, 1.17457, 26.6 ), Vector3( 2.94623, 1.12493, 26.6932 ), Vector3( 2.94623, 1.12493, 26.6932 ), Vector3( 2.94623, 1.17457, 26.6 ), Vector3( 2.94623, 1.17457, 26.6 ), Vector3( 2.94623, 1.17457, 26.6 ), Vector3( 2.94623, 1.08555, 26.8381 ), Vector3( 2.94623, 1.08555, 26.8381 ), Vector3( 2.94623, 1.08555, 19.6865 ) ]
 }
-tracks/14/type = "value"
-tracks/14/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup:translation")
+tracks/14/type = "method"
+tracks/14/path = NodePath("Cutscenes/ChaseIntro/Subtitle")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0, 1.5, 6.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 2.9, 1.2, 26.6 ), Vector3( 2.94623, 1.2, 26.6 ), Vector3( 2.94623, 1.17457, 26.6 ) ]
-}
-tracks/15/type = "method"
-tracks/15/path = NodePath("Cutscenes/ChaseIntro/Subtitle")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -374,17 +393,107 @@ tracks/15/keys = {
 "method": "SetCharacter"
 } ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("CoreSection/Props/Hide Helper:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 tracks/16/type = "value"
-tracks/16/path = NodePath("Props/Hide Helper:visible")
+tracks/16/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer/Camera:fov")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0, 1, 4.5, 15, 18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 70.0, 70.0, 40.4, 40.4, 70.0 ]
+}
+tracks/17/type = "audio"
+tracks/17/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer/Footsteps")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 21 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 37 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 36 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 37 )
+} ],
+"times": PoolRealArray( 14, 26.9, 27.1, 27.5, 27.9, 28.3, 28.7, 29.1, 29.5, 29.9 )
+}
+tracks/18/type = "method"
+tracks/18/path = NodePath("CoreSection/Props/Cutscene Door/WalkLoop")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"values": [ {
+"args": [  ],
+"method": "stop"
+} ]
+}
+tracks/19/type = "method"
+tracks/19/path = NodePath("Ambiance")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 26.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -499,7 +608,7 @@ tracks/8/keys = {
 "values": [ Vector3( 0, -96.001, 0 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup:translation")
+tracks/9/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer:translation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -511,7 +620,7 @@ tracks/9/keys = {
 "values": [ Vector3( 2.9, 1.2, 26.6 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup:rotation_degrees")
+tracks/10/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -523,7 +632,7 @@ tracks/10/keys = {
 "values": [ Vector3( 0, 5, 0 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Cutscenes/ChaseIntro/PlayerMockup/Camera:current")
+tracks/11/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer/Camera:current")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -559,7 +668,7 @@ tracks/13/keys = {
 "values": [ Vector3( 0, 0, 0 ) ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Props/Hide Helper:visible")
+tracks/14/path = NodePath("CoreSection/Props/Hide Helper:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -569,6 +678,30 @@ tracks/14/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Cutscenes/ChaseIntro/CutscenePlayer/Camera:fov")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 70.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Cutscenes/Chase/EmployeeHorde/Sprites:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 
 [sub_resource type="BoxShape" id=1]
@@ -822,198 +955,144 @@ border_blend = true
 
 [node name="Workplace" type="Spatial"]
 
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -3.0
+autoplay = true
+
 [node name="PlayerSpawn" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 28 )
 
-[node name="Ceiling" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9, 5.5, 11.9 )
+[node name="CoreSection" type="Spatial" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ceiling" type="CSGBox" parent="CoreSection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9, 5.5, 17.115 )
 use_collision = true
 width = 24.0
 height = 0.0543952
-depth = 38.0
+depth = 25.1936
 material = ExtResource( 1 )
 
-[node name="Ceiling2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, -13.5 )
-use_collision = true
-width = 39.2
-height = 0.0543952
-depth = 18.0
-material = ExtResource( 1 )
-
-[node name="Ceiling3" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9, 2.5, -12.8 )
-use_collision = true
-width = 3.6
-height = 0.0543952
-depth = 19.4
-material = ExtResource( 1 )
-
-[node name="Props" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.9, 0 )
-
-[node name="Chase P1 Entrance" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.99945, 0.0061475, 4.50083 )
-locked = true
-
-[node name="Chase P2 Entrance" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 0, -4.5 )
-
-[node name="Chase P3 Entrance" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2, -1, -17.6 )
-
-[node name="Chase Exit" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3, -1.03, -4.6 )
-levelTransition = ExtResource( 18 )
-
-[node name="Entrance Door" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0 )
-locked = true
-
-[node name="Cutscene Door" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 19 )
-locked = true
-
-[node name="Locked Door" parent="Props" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.6, 0, 29.5 )
-locked = true
-
-[node name="ExitBarricade" type="StaticBody" parent="Props"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.9, -3.6, 0 )
-
-[node name="Sprite3D" type="Sprite3D" parent="Props/ExitBarricade"]
-transform = Transform( 1.8, 0, 0, 0, 1.3, 0, 0, 0, 1, 0, 0, 0 )
-pixel_size = 0.005
-shaded = true
-texture = ExtResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/ExitBarricade"]
-shape = SubResource( 4 )
-
-[node name="EndSafetyBarrier" type="StaticBody" parent="Props"]
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -17.1, -0.6, -16 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/EndSafetyBarrier"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, -0.200001 )
-shape = SubResource( 7 )
-
-[node name="EndSafetyBarrier2" type="StaticBody" parent="Props"]
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -17.1, -0.6, -19 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/EndSafetyBarrier2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, -0.200001 )
-shape = SubResource( 7 )
-
-[node name="Prison Door" type="StaticBody" parent="Props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9, 0.8, 16.5 )
-
-[node name="Sprite3D" type="Sprite3D" parent="Props/Prison Door"]
-transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
-pixel_size = 0.004
-shaded = true
-texture = ExtResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/Prison Door"]
-shape = SubResource( 8 )
-
-[node name="Prison Door2" type="StaticBody" parent="Props"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9, 0.8, 16.5 )
-
-[node name="Sprite3D" type="Sprite3D" parent="Props/Prison Door2"]
-transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
-pixel_size = 0.004
-shaded = true
-texture = ExtResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/Prison Door2"]
-shape = SubResource( 8 )
-
-[node name="Player Prison Door" parent="Props" instance=ExtResource( 26 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.9, 22.5 )
-
-[node name="Prison Door4" type="StaticBody" parent="Props"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.9, 0.8, 22.5 )
-
-[node name="Sprite3D" type="Sprite3D" parent="Props/Prison Door4"]
-transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
-pixel_size = 0.004
-shaded = true
-texture = ExtResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Props/Prison Door4"]
-shape = SubResource( 8 )
-
-[node name="HallwayBarricade" type="StaticBody" parent="Props"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.1, -17.7 )
+[node name="Props" type="Spatial" parent="CoreSection"]
 __meta__ = {
-"_edit_group_": true
+"_edit_lock_": true
 }
 
-[node name="CollisionShape" type="CollisionShape" parent="Props/HallwayBarricade"]
-shape = SubResource( 6 )
+[node name="Cutscene Door" parent="CoreSection/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, 19 )
+locked = true
 
-[node name="Sprite3D" type="Sprite3D" parent="Props/HallwayBarricade"]
+[node name="WalkLoop" type="AudioStreamPlayer3D" parent="CoreSection/Props/Cutscene Door"]
+stream = ExtResource( 39 )
+unit_db = 2.0
+panning_strength = 1.2
+
+[node name="Locked Door" parent="CoreSection/Props" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.7, 0.9, 29.5 )
+locked = true
+
+[node name="Prison Door" type="StaticBody" parent="CoreSection/Props"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.7, 16.5 )
+
+[node name="Sprite3D" type="Sprite3D" parent="CoreSection/Props/Prison Door"]
 transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
-pixel_size = 0.0023
+pixel_size = 0.004
 shaded = true
 texture = ExtResource( 6 )
 
-[node name="Hide Helper" type="Sprite3D" parent="Props"]
-transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 5.3, -1.07, 21.4 )
+[node name="CollisionShape" type="CollisionShape" parent="CoreSection/Props/Prison Door"]
+shape = SubResource( 8 )
+
+[node name="Prison Door2" type="StaticBody" parent="CoreSection/Props"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.7, 16.5 )
+
+[node name="Sprite3D" type="Sprite3D" parent="CoreSection/Props/Prison Door2"]
+transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
+pixel_size = 0.004
+shaded = true
+texture = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CoreSection/Props/Prison Door2"]
+shape = SubResource( 8 )
+
+[node name="Hide Helper" type="Sprite3D" parent="CoreSection/Props"]
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 3.4, -0.17, 21.4 )
 modulate = Color( 0.647059, 0.647059, 0.647059, 1 )
+opacity = 0.2
 shaded = true
 double_sided = false
 texture = ExtResource( 32 )
 
-[node name="Useless Props" type="Spatial" parent="."]
+[node name="Paper Pickup" parent="CoreSection/Props" instance=ExtResource( 24 )]
+transform = Transform( 0.991275, -0.131807, 0, 0.131807, 0.991275, 0, 0, 0, 1, 5.04476, 1.13004, 22.55 )
+text = "I hid the key behind your bed.
+We may meet soon."
+disappearsOnPickup = true
 
-[node name="Reception Table" type="Sprite3D" parent="Useless Props"]
-transform = Transform( -6.11959e-08, 0, -1, 0, 1, 0, 1.4, 0, -4.37114e-08, 6.2, 0.4, 0.1 )
+[node name="Player Prison Door" parent="CoreSection/Props" instance=ExtResource( 26 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1, 1.8, 22.5 )
+BossFootstepAudioPath = NodePath("../Cutscene Door/WalkLoop")
+
+[node name="Prison Door4" type="StaticBody" parent="CoreSection/Props"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 1.7, 22.5 )
+
+[node name="Sprite3D" type="Sprite3D" parent="CoreSection/Props/Prison Door4"]
+transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
 pixel_size = 0.004
 shaded = true
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
-[node name="Prison Cells" type="Spatial" parent="Useless Props"]
+[node name="CollisionShape" type="CollisionShape" parent="CoreSection/Props/Prison Door4"]
+shape = SubResource( 8 )
 
-[node name="Bed" type="Sprite3D" parent="Useless Props/Prison Cells"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.3, 0.6, 27.9 )
+[node name="Key Pickup" parent="CoreSection/Props" instance=ExtResource( 25 )]
+transform = Transform( -1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, 4.17319, 0.6, 28.9838 )
+paperInfoPickupPath = NodePath("../Paper Pickup")
+assignedObjectPath = NodePath("../Player Prison Door")
+
+[node name="Useless Props" type="Spatial" parent="CoreSection"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Prison Cells" type="Spatial" parent="CoreSection/Useless Props"]
+
+[node name="Bed" type="Sprite3D" parent="CoreSection/Useless Props/Prison Cells"]
+transform = Transform( -0.182647, 0, 0.983178, 0.23072, 0.972076, 0.0428613, -0.955724, 0.234667, -0.177547, 4.64269, 0.529598, 27.6937 )
 pixel_size = 0.003
-billboard = 2
 shaded = true
 texture = ExtResource( 11 )
 
-[node name="Bed2" type="Sprite3D" parent="Useless Props/Prison Cells"]
+[node name="Bed2" type="Sprite3D" parent="CoreSection/Useless Props/Prison Cells"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.3, 0.6, 27.9 )
 pixel_size = 0.003
 billboard = 2
 shaded = true
 texture = ExtResource( 11 )
 
-[node name="Bed3" type="Sprite3D" parent="Useless Props/Prison Cells"]
+[node name="Bed3" type="Sprite3D" parent="CoreSection/Useless Props/Prison Cells"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.3, 0.6, 10.9 )
 pixel_size = 0.003
 billboard = 2
 shaded = true
 texture = ExtResource( 11 )
 
-[node name="Bed4" type="Sprite3D" parent="Useless Props/Prison Cells"]
+[node name="Bed4" type="Sprite3D" parent="CoreSection/Useless Props/Prison Cells"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.3, 0.6, 10.9 )
 pixel_size = 0.003
 billboard = 2
 shaded = true
 texture = ExtResource( 11 )
 
-[node name="Walls" type="Spatial" parent="."]
+[node name="Walls" type="Spatial" parent="CoreSection"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CSGBox2" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.6, 0 )
-use_collision = true
-width = 0.1
-height = 6.0
-depth = 10.0
-material = ExtResource( 2 )
-
-[node name="CSGBox11" type="CSGBox" parent="Walls"]
+[node name="CSGBox11" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.6, 22.8 )
 use_collision = true
 width = 0.1
@@ -1021,7 +1100,7 @@ height = 6.0
 depth = 14.0
 material = ExtResource( 2 )
 
-[node name="CSGBox12" type="CSGBox" parent="Walls"]
+[node name="CSGBox12" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2.6, 19.5 )
 use_collision = true
 width = 0.1
@@ -1029,7 +1108,7 @@ height = 6.0
 depth = 20.4
 material = ExtResource( 2 )
 
-[node name="CSGBox36" type="CSGBox" parent="Walls"]
+[node name="CSGBox36" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.098, 2.6, 26.062 )
 use_collision = true
 width = 0.1
@@ -1037,15 +1116,7 @@ height = 6.0
 depth = 7.2
 material = ExtResource( 2 )
 
-[node name="CSGBox3" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.6, 0 )
-use_collision = true
-width = 0.1
-height = 6.0
-depth = 10.0
-material = ExtResource( 2 )
-
-[node name="CSGBox6" type="CSGBox" parent="Walls"]
+[node name="CSGBox6" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 2.6, 10.5 )
 use_collision = true
 width = 0.1
@@ -1053,7 +1124,7 @@ height = 6.0
 depth = 12.0
 material = ExtResource( 2 )
 
-[node name="CSGBox14" type="CSGBox" parent="Walls"]
+[node name="CSGBox14" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 2.6, 13 )
 use_collision = true
 width = 0.1
@@ -1061,7 +1132,7 @@ height = 6.0
 depth = 7.0
 material = ExtResource( 2 )
 
-[node name="CSGBox34" type="CSGBox" parent="Walls"]
+[node name="CSGBox34" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 2.6, 26 )
 use_collision = true
 width = 0.1
@@ -1069,7 +1140,7 @@ height = 6.0
 depth = 7.0
 material = ExtResource( 2 )
 
-[node name="CSGBox7" type="CSGBox" parent="Walls"]
+[node name="CSGBox7" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 2.6, 10.5 )
 use_collision = true
 width = 0.1
@@ -1077,143 +1148,7 @@ height = 6.0
 depth = 12.0
 material = ExtResource( 2 )
 
-[node name="CSGBox19" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 1.3, -10.5 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 12.0
-material = ExtResource( 2 )
-
-[node name="CSGBox20" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1.3, -10.5 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 12.0
-material = ExtResource( 2 )
-
-[node name="CSGBox21" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.2, 1.3, -16.5 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 10.0
-material = ExtResource( 2 )
-
-[node name="CSGBox22" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.2, 1.3, -18.9 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 26.6
-material = ExtResource( 2 )
-
-[node name="CSGBox24" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.65, 1.3, -16.5 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 15.0
-material = ExtResource( 2 )
-
-[node name="CSGBox26" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.25, 1.3, -14.5 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 11.8
-material = ExtResource( 2 )
-
-[node name="CSGBox27" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.25, 1.3, -20.9 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 11.8
-material = ExtResource( 2 )
-
-[node name="CSGBox23" type="CSGBox" parent="Walls"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 13.9, 1.3, -17.7 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 2.6
-material = ExtResource( 2 )
-
-[node name="CSGBox37" type="CSGBox" parent="Walls"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -26.1, 0.5, -13.7 )
-use_collision = true
-width = 0.1
-height = 4.0
-depth = 16.0
-material = ExtResource( 2 )
-
-[node name="CSGBox38" type="CSGBox" parent="Walls"]
-transform = Transform( 1.94707e-07, 0, 1, 0, 1, 0, -1, 0, 1.94707e-07, -24.6, 0.5, -21.7 )
-use_collision = true
-width = 0.1
-height = 4.0
-depth = 3.4
-material = ExtResource( 2 )
-
-[node name="CSGBox39" type="CSGBox" parent="Walls"]
-transform = Transform( 1.94707e-07, 0, 1, 0, 1, 0, -1, 0, 1.94707e-07, -24.6, 0.5, -3.7 )
-use_collision = true
-width = 0.1
-height = 4.0
-depth = 3.4
-material = ExtResource( 2 )
-
-[node name="CSGBox40" type="CSGBox" parent="Walls"]
-transform = Transform( 1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, -26.2, 0.5, -4.7 )
-use_collision = true
-width = 0.1
-height = 4.0
-depth = 2.5
-material = ExtResource( 2 )
-
-[node name="CSGBox28" type="CSGBox" parent="Walls"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -11.4, 1.3, -20.2 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 2.6
-material = ExtResource( 2 )
-
-[node name="CSGBox29" type="CSGBox" parent="Walls"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -11.4, 1.3, -15.2 )
-use_collision = true
-width = 0.1
-height = 3.0
-depth = 2.6
-material = ExtResource( 2 )
-
-[node name="CSGBox25" type="CSGBox" parent="Walls"]
-transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -23.1, 0.7, -12.7 )
-use_collision = true
-width = 0.1
-height = 4.0
-depth = 18.0
-material = ExtResource( 2 )
-
-[node name="CSGBox8" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.4, 2.6, 16.5 )
-use_collision = true
-width = 0.1
-height = 6.0
-depth = 0.8
-material = ExtResource( 2 )
-
-[node name="CSGBox4" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2.6, 4.5 )
-use_collision = true
-width = 0.1
-height = 6.0
-depth = 12.0
-material = ExtResource( 2 )
-
-[node name="CSGBox15" type="CSGBox" parent="Walls"]
+[node name="CSGBox15" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.1, 2.6, 9.5 )
 use_collision = true
 width = 0.1
@@ -1221,7 +1156,7 @@ height = 6.0
 depth = 14.0
 material = ExtResource( 2 )
 
-[node name="CSGBox35" type="CSGBox" parent="Walls"]
+[node name="CSGBox35" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.1, 2.6, 29.5 )
 use_collision = true
 width = 0.1
@@ -1229,95 +1164,90 @@ height = 6.0
 depth = 18.0
 material = ExtResource( 2 )
 
-[node name="CSGBox9" type="CSGBox" parent="Walls"]
+[node name="CSGBox9" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.05, 2.6, 16.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox10" type="CSGBox" parent="Walls"]
+[node name="CSGBox10" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.05, 2.6, 22.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox18" type="CSGBox" parent="Walls"]
+[node name="CSGBox18" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.05, 2.6, 16.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox33" type="CSGBox" parent="Walls"]
+[node name="CSGBox33" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.05, 2.6, 22.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox16" type="CSGBox" parent="Walls"]
+[node name="CSGBox16" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.05, 4.6, 16.5 )
 use_collision = true
 width = 0.1
 depth = 4.0
 material = ExtResource( 2 )
 
-[node name="CSGBox31" type="CSGBox" parent="Walls"]
+[node name="CSGBox31" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.05, 4.6, 22.5 )
 use_collision = true
 width = 0.1
 depth = 4.0
 material = ExtResource( 2 )
 
-[node name="CSGBox17" type="CSGBox" parent="Walls"]
+[node name="CSGBox17" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.05, 4.6, 16.5 )
 use_collision = true
 width = 0.1
 depth = 4.0
 material = ExtResource( 2 )
 
-[node name="CSGBox32" type="CSGBox" parent="Walls"]
+[node name="CSGBox32" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.05, 4.6, 22.5 )
 use_collision = true
 width = 0.1
 depth = 4.0
 material = ExtResource( 2 )
 
-[node name="CSGBox13" type="CSGBox" parent="Walls"]
+[node name="CSGBox13" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.05, 2.6, 16.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox30" type="CSGBox" parent="Walls"]
+[node name="CSGBox30" type="CSGBox" parent="CoreSection/Walls"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.05, 2.6, 22.5 )
 use_collision = true
 width = 0.1
 height = 6.0
 material = ExtResource( 2 )
 
-[node name="CSGBox5" type="CSGBox" parent="Walls"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2.6, -4.5 )
+[node name="CSGBox8" type="CSGBox" parent="CoreSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.4, 2.6, 16.5 )
 use_collision = true
 width = 0.1
 height = 6.0
-depth = 12.0
+depth = 0.8
 material = ExtResource( 2 )
 
-[node name="Floors" type="Spatial" parent="."]
+[node name="Floors" type="Spatial" parent="CoreSection"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Main Floor" type="CSGBox" parent="Floors"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.2, 0 )
-use_collision = true
-width = 10.0
-height = 0.0543952
-depth = 9.0
-material = ExtResource( 1 )
-
-[node name="Main Floor2" type="CSGBox" parent="Floors"]
+[node name="Main Floor2" type="CSGBox" parent="CoreSection/Floors"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, -0.2, 19.5 )
 use_collision = true
 width = 17.0
@@ -1325,7 +1255,7 @@ height = 0.0543952
 depth = 6.0
 material = ExtResource( 1 )
 
-[node name="Main Floor3" type="CSGBox" parent="Floors"]
+[node name="Main Floor3" type="CSGBox" parent="CoreSection/Floors"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, -0.2, 13 )
 use_collision = true
 width = 14.0
@@ -1333,7 +1263,7 @@ height = 0.0543952
 depth = 7.0
 material = ExtResource( 1 )
 
-[node name="Main Floor4" type="CSGBox" parent="Floors"]
+[node name="Main Floor4" type="CSGBox" parent="CoreSection/Floors"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, -0.2, 26 )
 use_collision = true
 width = 14.0
@@ -1341,7 +1271,7 @@ height = 0.0543952
 depth = 7.0
 material = ExtResource( 1 )
 
-[node name="Floor" type="CSGBox" parent="Floors"]
+[node name="Floor" type="CSGBox" parent="CoreSection/Floors"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, -0.2, 10.5 )
 use_collision = true
 width = 2.4
@@ -1349,7 +1279,7 @@ height = 0.0543952
 depth = 12.0
 material = ExtResource( 1 )
 
-[node name="Floor9" type="CSGBox" parent="Floors"]
+[node name="Floor9" type="CSGBox" parent="CoreSection/Floors"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.2, 26 )
 use_collision = true
 width = 3.2
@@ -1357,131 +1287,46 @@ height = 0.0543952
 depth = 7.0
 material = ExtResource( 1 )
 
-[node name="Floor2" type="CSGBox" parent="Floors"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.2, -10.5 )
-use_collision = true
-width = 2.4
-height = 0.0543952
-depth = 12.0
-material = ExtResource( 1 )
+[node name="Lights" type="Spatial" parent="CoreSection"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Floor3" type="CSGBox" parent="Floors"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.9, -0.2, -17.7 )
-use_collision = true
-width = 2.4
-height = 0.0543952
-depth = 26.0
-material = ExtResource( 1 )
-
-[node name="Floor10" type="CSGBox" parent="Floors"]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -24.6, -1.2, -12.7 )
-use_collision = true
-width = 3.0
-height = 0.0543952
-depth = 18.0
-material = ExtResource( 1 )
-
-[node name="Floor4" type="CSGBox" parent="Floors"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.1, -0.2, -19.9 )
-use_collision = true
-height = 0.0543952
-depth = 12.0
-material = ExtResource( 1 )
-
-[node name="Floor7" type="CSGBox" parent="Floors"]
-transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -17.1, -1.2, -16.5 )
-use_collision = true
-height = 0.0543952
-depth = 12.0
-material = ExtResource( 1 )
-
-[node name="Floor5" type="CSGBox" parent="Floors"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.1, -0.2, -15.5 )
-use_collision = true
-height = 0.0543952
-depth = 12.0
-material = ExtResource( 1 )
-
-[node name="Floor8" type="CSGBox" parent="Floors"]
-transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -17.1, -1.2, -18.9 )
-use_collision = true
-height = 0.0543952
-depth = 12.0
-material = ExtResource( 1 )
-
-[node name="Floor6" type="CSGBox" parent="Floors"]
-transform = Transform( -4.35451e-08, -0.0871557, -0.996195, -3.8097e-09, 0.996195, -0.0871557, 1, 0, -4.37114e-08, -17.6, -0.7, -17.7 )
-use_collision = true
-width = 2.4
-height = 0.0543952
-depth = 11.0
-material = ExtResource( 1 )
-
-[node name="Lights" type="Spatial" parent="."]
-
-[node name="Emergency Light" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -8.2 )
-
-[node name="Emergency Light2" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 2, -17.7 )
-
-[node name="Emergency Light4" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 2, -17.7 )
-lightIntensity = 1.0
-
-[node name="Emergency Light3" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4, 2, -17.7 )
-
-[node name="Emergency Light5" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 1.8, -17.7 )
-
-[node name="Emergency Light6" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1.6, -17.7 )
-lightIntensity = 0.25
-
-[node name="Emergency Light7" parent="Lights" instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 1.6, -8.2 )
-lightIntensity = 0.4
-
-[node name="Chase P2 Entrance Light" type="SpotLight" parent="Lights"]
-transform = Transform( 0.993762, 0.00613976, -0.111352, 0.0815613, 0.640951, 0.763237, 0.0760571, -0.767558, 0.636452, 3, 6, 0 )
-visible = false
+[node name="SpotLight" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 0.998725, 0.0418631, -0.0282232, 0, 0.559005, 0.829164, 0.0504884, -0.828107, 0.558292, 3, 4.37893, 0 )
 light_color = Color( 0.698039, 0.921569, 1, 1 )
 light_energy = 3.0
-spot_range = 12.0
-spot_attenuation = 0.7
-spot_angle = 25.0
-spot_angle_attenuation = 0.450625
+spot_range = 13.742
+spot_angle = 42.81
+spot_angle_attenuation = 2.2974
 
-[node name="SpotLight" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3, 6, 0 )
-light_color = Color( 0.698039, 0.921569, 1, 1 )
-light_energy = 3.0
-spot_range = 12.0
-spot_attenuation = 0.00704101
-spot_angle = 40.0
-spot_angle_attenuation = 0.450625
-
-[node name="Prison Hallway Light1" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 15, 6, 20 )
+[node name="Prison Hallway Light1" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 15, 5.11844, 20 )
 light_color = Color( 0.698039, 0.921569, 1, 1 )
 light_energy = 4.0
 spot_range = 12.0
 spot_attenuation = 0.00704101
-spot_angle = 50.0
+spot_angle = 55.0
 spot_angle_attenuation = 0.450625
 
-[node name="Prison Hallway Light2" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 6, 20 )
+[node name="Prison Hallway Light2" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 5.11844, 20 )
 light_color = Color( 0.698039, 0.921569, 1, 1 )
 light_energy = 4.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
 spot_range = 12.0
 spot_attenuation = 0.00704101
-spot_angle = 50.0
+spot_angle = 55.0
 spot_angle_attenuation = 0.450625
 
-[node name="Prison room light" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 8, 3, 20 )
+[node name="Prison room light5" type="OmniLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.75686, 25.1887 )
+light_color = Color( 1, 0.901961, 0.901961, 1 )
+light_energy = 0.6
+
+[node name="Prison room light2" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 8, 3, 20 )
 light_color = Color( 1, 0.901961, 0.901961, 1 )
 light_energy = 0.3
 spot_range = 14.0
@@ -1489,16 +1334,7 @@ spot_attenuation = 0.00704101
 spot_angle = 40.0
 spot_angle_attenuation = 0.450625
 
-[node name="Prison room light2" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 8, 3, 20 )
-light_color = Color( 1, 0.901961, 0.901961, 1 )
-light_energy = 0.3
-spot_range = 14.0
-spot_attenuation = 0.00704101
-spot_angle = 40.0
-spot_angle_attenuation = 0.450625
-
-[node name="Prison room light3" type="SpotLight" parent="Lights"]
+[node name="Prison room light3" type="SpotLight" parent="CoreSection/Lights"]
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 14, 3, 20 )
 light_color = Color( 1, 0.901961, 0.901961, 1 )
 light_energy = 0.3
@@ -1507,8 +1343,26 @@ spot_attenuation = 0.00704101
 spot_angle = 40.0
 spot_angle_attenuation = 0.450625
 
-[node name="Prison room light4" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866026, 14, 3, 20 )
+[node name="SpotLight4" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3, 4.68586, 7 )
+light_color = Color( 0.698039, 0.921569, 1, 1 )
+light_energy = 0.6
+spot_range = 12.0
+spot_attenuation = 0.00704101
+spot_angle = 40.0
+spot_angle_attenuation = 0.450625
+
+[node name="Prison room light" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 8, 3, 20 )
+light_color = Color( 0.878431, 0.462745, 0.462745, 1 )
+light_energy = 0.3
+spot_range = 14.0
+spot_attenuation = 0.00704101
+spot_angle = 40.0
+spot_angle_attenuation = 0.450625
+
+[node name="Prison room light4" type="SpotLight" parent="CoreSection/Lights"]
+transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 14, 3, 20 )
 light_color = Color( 1, 0.901961, 0.901961, 1 )
 light_energy = 0.3
 spot_range = 14.0
@@ -1516,13 +1370,462 @@ spot_attenuation = 0.00704101
 spot_angle = 40.0
 spot_angle_attenuation = 0.450625
 
-[node name="SpotLight4" type="SpotLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3, 6, 7 )
+[node name="Prisoners" type="Spatial" parent="CoreSection"]
+
+[node name="Sprite3D" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 7.2, 0.9, 12.4 )
+pixel_size = 0.003
+shaded = true
+texture = ExtResource( 23 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( -3.78552e-08, -1, -2.18557e-08, -5.96046e-08, -2.18557e-08, 1, -1, 3.78552e-08, -5.96046e-08, 15.2, -0.1, 12.4 )
+pixel_size = 0.003
+shaded = true
+texture = ExtResource( 23 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 0.754343, -0.32824, -0.568529, 3.37604e-09, 0.866025, -0.5, 0.65648, 0.377172, 0.65328, 16.2, 0.656752, 11.6 )
+pixel_size = 0.003
+shaded = true
+texture = ExtResource( 23 )
+
+[node name="Sprite3D5" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 1, 14.8, 0.856752, 26.6 )
+flip_h = true
+modulate = Color( 0.913725, 0.631373, 0.631373, 1 )
+pixel_size = 0.003
+texture = ExtResource( 23 )
+
+[node name="Sprite3D6" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 0.949283, 0.314423, 0, -0.314423, 0.949283, 0, 0, 0, 1, 16.5687, 1.36496, 27.3 )
+flip_h = true
+modulate = Color( 0.647059, 0.929412, 0.701961, 1 )
+pixel_size = 0.003
+texture = ExtResource( 23 )
+
+[node name="Sprite3D7" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 0.822103, 0.272299, -0.5, -0.314423, 0.949283, 0, 0.474641, 0.157212, 0.866025, 12.5687, 0.964956, 25.3 )
+flip_h = true
+flip_v = true
+modulate = Color( 0.513726, 0.54902, 0.941176, 1 )
+pixel_size = 0.003
+texture = ExtResource( 23 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="CoreSection/Prisoners"]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 9.2, 0.9, 11.4 )
+pixel_size = 0.003
+shaded = true
+texture = ExtResource( 23 )
+
+[node name="TransitionSection" type="Spatial" parent="."]
+
+[node name="Chase P1 Entrance" parent="TransitionSection" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.01007, 0.906147, 4.51323 )
+locked = true
+HiddenOnEnter = [ NodePath("../../CoreSection") ]
+ShownOnEnter = [ NodePath("../../ChaseSection") ]
+
+[node name="CSGBox4" type="CSGBox" parent="TransitionSection"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2.6, 4.5 )
+use_collision = true
+width = 0.1
+height = 6.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="ChaseSection" type="Spatial" parent="."]
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ceiling2" type="CSGBox" parent="ChaseSection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, -13.5 )
+use_collision = true
+width = 39.2
+height = 0.0543952
+depth = 18.0
+material = ExtResource( 1 )
+
+[node name="Ceiling3" type="CSGBox" parent="ChaseSection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98818, 5.36063, 0.0198779 )
+use_collision = true
+width = 10.0597
+height = 0.0543952
+depth = 9.00449
+material = ExtResource( 1 )
+
+[node name="Ceiling4" type="CSGBox" parent="ChaseSection"]
+transform = Transform( 0.257834, -0.0871557, -0.96225, 0.0225576, 0.996195, -0.084186, 0.965926, 0, 0.258819, -30.4, 1.8, -16.7 )
+use_collision = true
+width = 6.0
+height = 0.0543952
+depth = 18.0
+material = ExtResource( 1 )
+
+[node name="Props" type="Spatial" parent="ChaseSection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.9, 0 )
+
+[node name="Chase P2 Entrance" parent="ChaseSection/Props" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 0, -4.5 )
+
+[node name="Chase P3 Entrance" parent="ChaseSection/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2, -1, -17.6 )
+
+[node name="Chase Exit" parent="ChaseSection/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5, -1.03, -14.4 )
+levelTransition = ExtResource( 18 )
+
+[node name="Entrance Door" parent="ChaseSection/Props" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0 )
+locked = true
+
+[node name="ExitBarricade" type="StaticBody" parent="ChaseSection/Props"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.9, -3.6, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="ChaseSection/Props/ExitBarricade"]
+transform = Transform( 1.8, 0, 0, 0, 1.3, 0, 0, 0, 1, 0, 0, 0 )
+pixel_size = 0.005
+shaded = true
+texture = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Props/ExitBarricade"]
+shape = SubResource( 4 )
+
+[node name="EndSafetyBarrier" type="StaticBody" parent="ChaseSection/Props"]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -17.1, -0.6, -16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Props/EndSafetyBarrier"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, -0.200001 )
+shape = SubResource( 7 )
+
+[node name="EndSafetyBarrier2" type="StaticBody" parent="ChaseSection/Props"]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -17.1, -0.6, -19 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Props/EndSafetyBarrier2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, -0.200001 )
+shape = SubResource( 7 )
+
+[node name="HallwayBarricade" type="StaticBody" parent="ChaseSection/Props"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0.1, -17.7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Props/HallwayBarricade"]
+shape = SubResource( 6 )
+
+[node name="Sprite3D" type="Sprite3D" parent="ChaseSection/Props/HallwayBarricade"]
+transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 0, 0 )
+pixel_size = 0.0023
+shaded = true
+texture = ExtResource( 6 )
+
+[node name="Useless Props" type="Spatial" parent="ChaseSection"]
+
+[node name="Reception Table" type="Sprite3D" parent="ChaseSection/Useless Props"]
+transform = Transform( -6.11959e-08, 0, -1, 0, 1, 0, 1.4, 0, -4.37114e-08, 6.2, 0.4, 0.1 )
+pixel_size = 0.004
+shaded = true
+texture = ExtResource( 5 )
+
+[node name="Reception Table2" type="Sprite3D" parent="ChaseSection/Useless Props/Reception Table"]
+transform = Transform( 2.62268e-08, 0, 0.714286, 0, 1, 0, -0.28, 0, -7.86805e-08, 1.10396, 0, -0.3681 )
+pixel_size = 0.004
+shaded = true
+texture = ExtResource( 5 )
+
+[node name="Reception Table3" type="Sprite3D" parent="ChaseSection/Useless Props/Reception Table"]
+transform = Transform( -8.74225e-09, 0, -0.714286, 0, 1, 0, 0.28, 0, 1.66103e-07, -1.07203, 0, -0.3681 )
+pixel_size = 0.004
+shaded = true
+texture = ExtResource( 5 )
+
+[node name="Side wall" type="StaticBody" parent="ChaseSection/Useless Props"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94196, 2.48211, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Useless Props/Side wall"]
+shape = SubResource( 15 )
+
+[node name="Side wall2" type="StaticBody" parent="ChaseSection/Useless Props"]
+transform = Transform( 0.993244, 0, -0.116047, 0, 1, 0, 0.116047, 0, 0.993244, 1.47914, 2.48211, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ChaseSection/Useless Props/Side wall2"]
+shape = SubResource( 15 )
+
+[node name="Sprite3D" type="Sprite3D" parent="ChaseSection/Useless Props"]
+transform = Transform( 1.06809, 0, 0, 0, 0.368136, 0, 0, 0, 1, -17.5661, 1.06332, -19.1677 )
+shaded = true
+texture = ExtResource( 6 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="ChaseSection/Useless Props"]
+transform = Transform( 1.06809, 0, 0, 0, 0.368136, 0, 0, 0, 1, -17.5661, 1.06332, -16.2861 )
+shaded = true
+texture = ExtResource( 6 )
+
+[node name="Walls" type="Spatial" parent="ChaseSection"]
+
+[node name="CSGBox2" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.6, 0 )
+use_collision = true
+width = 0.1
+height = 6.0
+depth = 10.0
+material = ExtResource( 2 )
+
+[node name="CSGBox3" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.6, 0 )
+use_collision = true
+width = 0.1
+height = 6.0
+depth = 10.0
+material = ExtResource( 2 )
+
+[node name="CSGBox19" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 1.3, -10.5 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="CSGBox20" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1.3, -10.5 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="CSGBox21" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.2, 1.3, -16.5 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 10.0
+material = ExtResource( 2 )
+
+[node name="CSGBox22" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.2, 1.3, -18.9 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 26.6
+material = ExtResource( 2 )
+
+[node name="CSGBox24" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.65, 1.3, -16.5 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 15.0
+material = ExtResource( 2 )
+
+[node name="CSGBox26" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.25, 1.3, -14.5 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 11.8
+material = ExtResource( 2 )
+
+[node name="CSGBox27" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.25, 1.3, -20.9 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 11.8
+material = ExtResource( 2 )
+
+[node name="CSGBox23" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 13.9, 1.3, -17.7 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 2.6
+material = ExtResource( 2 )
+
+[node name="CSGBox37" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -0.463249, 0, 0.886228, 0, 1, 0, -0.886228, 0, -0.463249, -28.1, 0.5, -18.1 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="CSGBox39" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -26.7569, 0.5, -14.6909 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 7.58085
+material = ExtResource( 2 )
+
+[node name="CSGBox40" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 2.08616e-07, 0, 1, 0, 1, 0, -1, 0, 2.08616e-07, -34.4, 0.5, -13.7 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 8.0
+material = ExtResource( 2 )
+
+[node name="CSGBox41" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( 2.08616e-07, 0, 1, 0, 1, 0, -1, 0, 2.08616e-07, -36.3713, 0.5, -15.334 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 6.0
+material = ExtResource( 2 )
+
+[node name="CSGBox42" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -1, 0, 1.64905e-07, 0, 1, 0, -1.64905e-07, 0, -1, -38.3713, 0.5, -14.334 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 6.0
+material = ExtResource( 2 )
+
+[node name="CSGBox28" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -11.4, 1.3, -20.2 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 2.6
+material = ExtResource( 2 )
+
+[node name="CSGBox29" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -11.4, 1.3, -15.2 )
+use_collision = true
+width = 0.1
+height = 3.0
+depth = 2.6
+material = ExtResource( 2 )
+
+[node name="CSGBox25" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -23.1, 0.7, -12.7 )
+use_collision = true
+width = 0.1
+height = 4.0
+depth = 18.0
+material = ExtResource( 2 )
+
+[node name="CSGBox5" type="CSGBox" parent="ChaseSection/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2.6, -4.5 )
+use_collision = true
+width = 0.1
+height = 6.0
+depth = 12.0
+material = ExtResource( 2 )
+
+[node name="Floors" type="Spatial" parent="ChaseSection"]
+
+[node name="Main Floor" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.2, 0 )
+use_collision = true
+width = 10.0
+height = 0.0543952
+depth = 9.0
+material = ExtResource( 1 )
+
+[node name="Floor2" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.2, -10.5 )
+use_collision = true
+width = 2.4
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="Floor3" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.9, -0.2, -17.7 )
+use_collision = true
+width = 2.4
+height = 0.0543952
+depth = 26.0
+material = ExtResource( 1 )
+
+[node name="Floor10" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -30.4, -1.2, -16.7 )
+use_collision = true
+width = 6.0
+height = 0.0543952
+depth = 18.0
+material = ExtResource( 1 )
+
+[node name="Floor4" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.1, -0.2, -19.9 )
+use_collision = true
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="Floor7" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -17.1, -1.2, -16.5 )
+use_collision = true
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="Floor5" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.1, -0.2, -15.5 )
+use_collision = true
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="Floor8" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -17.1, -1.2, -18.9 )
+use_collision = true
+height = 0.0543952
+depth = 12.0
+material = ExtResource( 1 )
+
+[node name="Floor6" type="CSGBox" parent="ChaseSection/Floors"]
+transform = Transform( -4.35451e-08, -0.0871557, -0.996195, -3.8097e-09, 0.996195, -0.0871557, 1, 0, -4.37114e-08, -17.6, -0.7, -17.7 )
+use_collision = true
+width = 2.4
+height = 0.0543952
+depth = 11.0
+material = ExtResource( 1 )
+
+[node name="Lights" type="Spatial" parent="ChaseSection"]
+
+[node name="Emergency Light" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.46231, -8.2 )
+
+[node name="Emergency Light2" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.46231, -17.7 )
+
+[node name="Emergency Light4" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 1.46231, -17.7 )
+lightIntensity = 1.0
+
+[node name="Emergency Light3" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4, 1.46231, -17.7 )
+lightIntensity = 1.8
+
+[node name="Emergency Light5" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 1.26231, -17.7 )
+
+[node name="Emergency Light8" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, -0.737692, -14.7 )
+
+[node name="Emergency Light9" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 0.262308, -16.7 )
+lightIntensity = 0.5
+
+[node name="Emergency Light6" parent="ChaseSection/Lights" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1.06231, -17.7 )
+lightIntensity = 0.25
+
+[node name="Chase P2 Entrance Light" type="SpotLight" parent="ChaseSection/Lights"]
+transform = Transform( 0.993762, 0.00613976, -0.111352, 0.0815613, 0.640951, 0.763237, 0.0760571, -0.767558, 0.636452, 3, 6, 0 )
+visible = false
 light_color = Color( 0.698039, 0.921569, 1, 1 )
-light_energy = 0.6
+light_energy = 3.0
 spot_range = 12.0
-spot_attenuation = 0.00704101
-spot_angle = 40.0
+spot_attenuation = 0.7
+spot_angle = 25.0
 spot_angle_attenuation = 0.450625
 
 [node name="Cutscenes" type="Spatial" parent="."]
@@ -1569,25 +1872,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
 [node name="Sprite3D" type="Sprite3D" parent="Cutscenes/Chase/EmployeeHorde/Sprites"]
 transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -0.8, -1.19209e-07, 0.4 )
 pixel_size = 0.004
-shaded = true
 texture = ExtResource( 23 )
 
 [node name="Sprite3D2" type="Sprite3D" parent="Cutscenes/Chase/EmployeeHorde/Sprites"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 0.3, 0.700001 )
 pixel_size = 0.005
-shaded = true
 texture = ExtResource( 23 )
 
 [node name="Sprite3D3" type="Sprite3D" parent="Cutscenes/Chase/EmployeeHorde/Sprites"]
 transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0.4, -0.3, 0.1 )
 pixel_size = 0.003
-shaded = true
 texture = ExtResource( 23 )
 
 [node name="Sprite3D4" type="Sprite3D" parent="Cutscenes/Chase/EmployeeHorde/Sprites"]
 transform = Transform( 0.939692, 0, -0.34202, 0, 0.999999, 0, 0.34202, 0, 0.939693, -1.3, -0.3, 0.1 )
 pixel_size = 0.003
-shaded = true
 texture = ExtResource( 23 )
 
 [node name="BobPlayer" type="AnimationPlayer" parent="Cutscenes/Chase/EmployeeHorde"]
@@ -1628,7 +1927,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 18 )
 transform = Transform( -0.104546, 0, -0.994519, 0, 1, 0, 0.994519, 0, -0.104546, -0.077998, 1.1, 18.8476 )
 modulate = Color( 1, 0.858824, 0.705882, 1 )
 pixel_size = 0.0035
-shaded = true
 texture = ExtResource( 23 )
 __meta__ = {
 "_edit_group_": true
@@ -1637,14 +1935,18 @@ __meta__ = {
 [node name="BossAudio" type="AudioStreamPlayer3D" parent="Cutscenes/ChaseIntro/EvilBoss"]
 stream = ExtResource( 12 )
 unit_size = 10.0
+bus = "SFX"
 
-[node name="PlayerMockup" type="Spatial" parent="Cutscenes/ChaseIntro"]
+[node name="CutscenePlayer" type="Spatial" parent="Cutscenes/ChaseIntro"]
 transform = Transform( 0.996195, 0, 0.0871558, 0, 1, 0, -0.0871558, 0, 0.996195, 2.9, 1.2, 26.6 )
 
-[node name="Camera" type="Camera" parent="Cutscenes/ChaseIntro/PlayerMockup"]
-transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0, 0 )
+[node name="Camera" type="Camera" parent="Cutscenes/ChaseIntro/CutscenePlayer"]
 current = true
 script = ExtResource( 33 )
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Cutscenes/ChaseIntro/CutscenePlayer"]
+stream = ExtResource( 36 )
+bus = "SFX"
 
 [node name="Fade" type="ColorRect" parent="Cutscenes/ChaseIntro"]
 anchor_right = 1.0
@@ -1657,71 +1959,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 5 )
-text = "RUN"
+text = "RUN WITH SHIFT"
 align = 1
 valign = 1
 percent_visible = 0.0
 
 [node name="Subtitle" parent="Cutscenes/ChaseIntro" instance=ExtResource( 22 )]
-
-[node name="Ambiance" type="AudioStreamPlayer" parent="Cutscenes/ChaseIntro"]
-stream = ExtResource( 17 )
-volume_db = -4.0
-
-[node name="Prisoners" type="Spatial" parent="."]
-
-[node name="Sprite3D" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 7.2, 0.9, 12.4 )
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D3" type="Sprite3D" parent="Prisoners"]
-transform = Transform( -3.78552e-08, -1, -2.18557e-08, -5.96046e-08, -2.18557e-08, 1, -1, 3.78552e-08, -5.96046e-08, 15.2, -0.1, 12.4 )
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D4" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 0.754343, -0.32824, -0.568529, 3.37604e-09, 0.866025, -0.5, 0.65648, 0.377172, 0.65328, 16.2, 0.656752, 11.6 )
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D5" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 1, 14.8, 0.856752, 26.6 )
-flip_h = true
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D6" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 0.949283, 0.314423, 0, -0.314423, 0.949283, 0, 0, 0, 1, 16.5687, 1.36496, 27.3 )
-flip_h = true
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D7" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 0.822103, 0.272299, -0.5, -0.314423, 0.949283, 0, 0.474641, 0.157212, 0.866025, 12.5687, 0.964956, 25.3 )
-flip_h = true
-flip_v = true
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Sprite3D2" type="Sprite3D" parent="Prisoners"]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 9.2, 0.9, 11.4 )
-pixel_size = 0.003
-shaded = true
-texture = ExtResource( 23 )
-
-[node name="Key Pickup" parent="." instance=ExtResource( 25 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.8, 0.6, 29.45 )
-assignedObjectPath = NodePath("../Props/Player Prison Door")
-
-[node name="Paper Pickup" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04476, 1.13004, 22.55 )
-text = "I hid the key behind your bed!
-There's no time to explain who i am or why,
-We may meet soon."

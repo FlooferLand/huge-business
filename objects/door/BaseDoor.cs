@@ -4,6 +4,8 @@ namespace Project
 {
     public abstract class BaseDoor : Spatial, IBaseUnlockable
     {
+        protected Spatial outOffset;
+
         // Export Variables
         [Export] public bool locked = false;
         [Export] public PackedScene levelTransition;
@@ -13,10 +15,18 @@ namespace Project
 
         public abstract void Interact(DoorSide side);
 
+        public override void _Ready() {
+            base._Ready();
+            outOffset = GetNode<Spatial>("OutOffset");
+        }
+
         public void Unlock()
         {
             locked = false;
-            Interact(currentSide);
+        }
+
+        public bool IsLocked() {
+            return locked;
         }
     }
 }

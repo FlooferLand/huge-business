@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Project
@@ -9,6 +10,7 @@ namespace Project
 
         public override void _Ready()
         {
+            base._Ready();
             sound = GetNode<AudioStreamPlayer>("Sound");
             Global.blackoutHandler.Connect("end", this, nameof(_OnBlackoutEnd));
         }
@@ -24,33 +26,32 @@ namespace Project
             // Triggering blackout
             currentSide = side;
             Global.player.canMove = false;
-            Global.blackoutHandler.TriggerBlackout(Name);
+            Global.blackoutHandler.TriggerBlackout(GetInstanceId().ToString());
             sound.Play();
         }
 
         public void _OnBlackoutEnd(string reason)
         {
-            // Return if currentSide returns null
-            // idk why that happens XD
-            if (currentSide == null || reason != Name)
+            // Not this door!
+            if (currentSide == null || reason != GetInstanceId().ToString())
                 return;
 
             // Animation end
             Vector3 side = GlobalTransform.basis.x;
-            if (RotationDegrees.y != 0 && RotationDegrees.y != 180)
+            if (RotationDegrees.y != 0 && Math.Abs(RotationDegrees.y - 180) > 1.0)
             {
-                if (RotationDegrees.y == 90 && RotationDegrees.y == -90)
+                if (Math.Abs(RotationDegrees.y - 90) < 1.0 && Math.Abs(RotationDegrees.y - (-90)) < 1.0)
                 {
                     side = GlobalTransform.basis.x;
                 }
             }
-            side = side * (currentSide.id == DoorSide.SIDES.Front ? -1 : 1);
+            side *= (currentSide.id == DoorSide.SIDES.Front ? -1 : 1);
 
             currentSide = null;
             Global.player.canMove = true;
 
             if (levelTransition == null)
-                Global.player.Translation = (GlobalTransform.origin + side) - (Vector3.Up * 0.95f);
+                Global.player.Translation = (outOffset.GlobalPosition + side);
             else
                 Global.gameMaster.ChangeMap(levelTransition);
         }

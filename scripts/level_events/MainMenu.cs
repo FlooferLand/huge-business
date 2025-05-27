@@ -17,14 +17,8 @@ namespace Project
 			// Doing stuff with nodes
 			credit.Connect("meta_clicked", this, nameof(_OnLinkClicked));
 
-			// Min res so UI doesn't scale weirdly
-			OS.MinWindowSize = new Vector2(1200, 650);
-
 			// For when the game resets
 			Input.MouseMode = Input.MouseModeEnum.Visible;
-
-			// Maximizing window because yes
-			OS.WindowMaximized = true;
 
 			// Animation player go brr
 			backgroundMovement.Play("BackgroundMovement");

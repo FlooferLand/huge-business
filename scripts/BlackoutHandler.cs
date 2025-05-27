@@ -13,7 +13,7 @@ namespace Project
         // Variables
         public enum STATE { None, FadingIn, FadingOut };
         public STATE state = STATE.None;
-        public string reason;
+        public string id;
 
         // -- Functions
         public override void _Ready()
@@ -46,15 +46,15 @@ namespace Project
             }
         }
 
-        void _Timeout()  // blackout starts fadeing out
+        void _Timeout()  // blackout starts fading out
         {
             state = STATE.FadingOut;
-            EmitSignal(nameof(end), reason);
+            EmitSignal(nameof(end), id);
         }
 
-        public void TriggerBlackout(string reason)  // blackout starts
+        public void TriggerBlackout(string id)  // blackout starts
         {
-            this.reason = reason;
+            this.id = id;
             state = STATE.FadingIn;
             timer.Start();
         }

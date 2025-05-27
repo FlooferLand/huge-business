@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://materials/workspace_floor.material" type="Material" id=1]
 [ext_resource path="res://objects/player/PlayerSpawn.tscn" type="PackedScene" id=2]
@@ -26,12 +26,57 @@
 [ext_resource path="res://fonts/MainFancy.tres" type="DynamicFont" id=24]
 [ext_resource path="res://textures/lockpick.png" type="Texture" id=25]
 [ext_resource path="res://scripts/editor/InvisInGame.cs" type="Script" id=26]
+[ext_resource path="res://audio/barks/enemy0_bark.wav" type="AudioStream" id=27]
+[ext_resource path="res://textures/the_rock.png" type="Texture" id=28]
+[ext_resource path="res://textures/paper.jpg" type="Texture" id=29]
+[ext_resource path="res://textures/scissors.png" type="Texture" id=30]
+[ext_resource path="res://scripts/RpsGuy.cs" type="Script" id=31]
+[ext_resource path="res://audio/misc/door.wav" type="AudioStream" id=32]
+[ext_resource path="res://audio/misc/jumpscare_lmao.wav" type="AudioStream" id=33]
 
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 1, 0.5, 0.3 )
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3.4, 2, 0.1 )
+
+[sub_resource type="Curve" id=20]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 39.0217, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=21]
+width = 512
+curve = SubResource( 20 )
+
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 0.3
+initial_velocity = 1.0
+initial_velocity_random = 1.0
+angular_velocity = 5.0
+angular_velocity_random = 0.89
+radial_accel = 5.0
+radial_accel_random = 1.0
+angle = 331.6
+angle_random = 1.0
+angle_curve = SubResource( 21 )
+scale_curve = SubResource( 23 )
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_transparent = true
+albedo_color = Color( 0.2, 0.2, 0.2, 1 )
+roughness = 0.55
+
+[sub_resource type="PlaneMesh" id=18]
+material = SubResource( 19 )
+size = Vector2( 0.3, 0.3 )
 
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 2, 1.2, 0.1 )
@@ -44,7 +89,7 @@ extents = Vector3( 1.3, 1.2, 0.1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "CloseVent"
-length = 2.0
+length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Model:rotation_degrees")
 tracks/0/interp = 1
@@ -109,6 +154,42 @@ tracks/4/keys = {
 "method": "BlockAttack"
 } ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Model/Sprite3D:render_priority")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ModelArms/Sprite3D:render_priority")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 1 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("ModelArms/Sprite3D2:render_priority")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 1 ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -147,6 +228,42 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1.25, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Model/Sprite3D:render_priority")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ModelArms/Sprite3D:render_priority")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ModelArms/Sprite3D2:render_priority")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -713,6 +830,193 @@ tracks/13/keys = {
 [sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.8, 3, 4.7 )
 
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 2.65649, 1.0795, 1.69151 )
+
+[sub_resource type="Animation" id=16]
+resource_name = "Jumpscare"
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Body/Bark")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 33 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.796595, -6.32881 ), Vector3( 0, 0.796595, 1.60476 ), Vector3( 0, 0.796595, 1.60476 ), Vector3( 0, -2.23804, 1.60476 ), Vector3( 0, -2.44063, -6.32881 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.796595, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Silly"
+length = 11.5
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Body/Bark")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 27 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 3.2, 3.5, 3.9, 9.70097, 10.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.797628, 0 ), Vector3( 0, 0.84106, 0.895909 ), Vector3( 0, 0.84106, 0.895909 ), Vector3( 0, 0.477378, 0.895909 ), Vector3( 0, 0.84106, 0.895909 ), Vector3( 0, 0.84106, 0.895909 ), Vector3( 0, 0.84106, -7.14716 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.2, 1.4, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( -90, 0, 0 ), Vector3( 138, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.6, 0.769393, 1, 1.3, 1.5, 1.6, 1.7, 1.9, 2.1, 2.4, 2.6, 2.7, 2.8, 2.9, 3, 3.2, 3.4, 3.9, 4, 4.1, 4.3, 4.5, 4.7, 5, 5.1, 5.2, 5.3, 5.4, 5.6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.7, 6.9, 7, 7.1, 7.6, 8, 8.1, 8.2, 8.3, 8.4, 8.6, 8.8, 8.9, 9, 9.4, 9.6, 9.7, 9.9, 10.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.5, 0.631, 0 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1.2, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Body/Sfx")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 32 )
+} ],
+"times": PoolRealArray( 10.2 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Label3D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3.9, 4.3, 9.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, false ]
+}
+
 [node name="The Facility" type="Spatial"]
 script = ExtResource( 5 )
 __meta__ = {
@@ -912,6 +1216,21 @@ spot_angle = 35.0
 spot_angle_attenuation = 0.615572
 script = ExtResource( 26 )
 
+[node name="SpotLight2" type="SpotLight" parent="Building/Lights"]
+transform = Transform( 0.493077, -0.132991, 0.859761, -0.869986, -0.0753742, 0.487281, 0, -0.988247, -0.152865, -6.09603, 6.81239, 0 )
+spot_range = 10.5598
+spot_angle = 70.0484
+
+[node name="SpotLight3" type="SpotLight" parent="Building/Lights"]
+transform = Transform( 0.973823, -0.0764566, 0.214063, -0.211575, 0.0393739, 0.976568, -0.0830936, -0.996295, 0.0221668, -16.2027, 7.2845, 0 )
+spot_range = 10.5598
+spot_angle = 61.861
+
+[node name="SpotLight4" type="SpotLight" parent="Building/Lights"]
+transform = Transform( 0.973031, -0.0859164, -0.214075, 0.215186, 0.00378083, 0.976566, -0.0830936, -0.996295, 0.0221669, -23.6658, 7.2845, 0 )
+spot_range = 10.5598
+spot_angle = 39.1268
+
 [node name="Decoration" type="Spatial" parent="Building"]
 
 [node name="Table" type="StaticBody" parent="Building/Decoration"]
@@ -994,6 +1313,17 @@ unit_db = 4.0
 unit_size = 8.0
 pitch_scale = 0.6
 
+[node name="Particles" type="Particles" parent="Building/Props/EscapeDoorBlockage"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.89511e-09, -0.200091, -0.157742 )
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.3
+visibility_aabb = AABB( -1.10477, -1.6563, -0.561886, 2.20953, 3.17783, 1.12377 )
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 18 )
+
 [node name="FakeDoorBlockage" type="StaticBody" parent="Building/Props"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.3, 1.25, -5.05 )
 __meta__ = {
@@ -1004,6 +1334,7 @@ __meta__ = {
 transform = Transform( 1.25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 pixel_size = 0.0032
 shaded = true
+render_priority = 2
 texture = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building/Props/FakeDoorBlockage"]
@@ -1031,6 +1362,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.9, 0.
 modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
 pixel_size = 0.0038
 shaded = true
+render_priority = 1
 texture = ExtResource( 12 )
 
 [node name="Sprite3D2" type="Sprite3D" parent="Building/Props/Vent AMONGUS/ModelArms"]
@@ -1038,6 +1370,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.9, 0
 modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
 pixel_size = 0.0038
 shaded = true
+render_priority = 1
 texture = ExtResource( 12 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building/Props/Vent AMONGUS"]
@@ -1105,6 +1438,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -4.8, 3.5 )
 [node name="PlagueDoctor" type="Sprite3D" parent="Building/Enemies/Jumpscare"]
 flip_h = true
 pixel_size = 0.0017
+render_priority = 2
 texture = ExtResource( 13 )
 
 [node name="Audio" type="AudioStreamPlayer" parent="Building/Enemies/Jumpscare"]
@@ -1130,6 +1464,7 @@ __meta__ = {
 flip_h = true
 pixel_size = 0.0017
 shaded = true
+render_priority = 2
 texture = ExtResource( 13 )
 
 [node name="Audio" type="AudioStreamPlayer3D" parent="Building/Enemies/PlagueDoctor"]
@@ -1171,3 +1506,70 @@ unit_size = 12.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, 0 )
 unit_size = 2.0
 autoplay = true
+
+[node name="RPS Guy" type="Spatial" parent="Events"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28114, 0, -6.78103 )
+script = ExtResource( 31 )
+
+[node name="Label3D" type="Label3D" parent="Events/RPS Guy"]
+transform = Transform( 1, 0, 0, 0, 1.19812, 0, 0, 0, 1, 0, 0.577773, 1.84422 )
+visible = false
+render_priority = 4
+text = "It would be best
+If you invest (TM)
+(This is not legal advice)"
+uppercase = true
+
+[node name="Body" type="Spatial" parent="Events/RPS Guy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.796595, 0 )
+
+[node name="Rock" type="Sprite3D" parent="Events/RPS Guy/Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182264, 0 )
+texture = ExtResource( 28 )
+
+[node name="Paper" type="Sprite3D" parent="Events/RPS Guy/Body"]
+transform = Transform( 0.976728, 0.21448, 0, -0.21448, 0.976728, 0, 0, 0, 1, 0.10057, 0.383688, 0.0217643 )
+pixel_size = 0.0007
+render_priority = 1
+texture = ExtResource( 29 )
+
+[node name="Paper2" type="Sprite3D" parent="Events/RPS Guy/Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.571836, 0.181318, 0.0217643 )
+pixel_size = 0.0005
+render_priority = 1
+texture = ExtResource( 29 )
+
+[node name="Sceissors" type="Sprite3D" parent="Events/RPS Guy/Body"]
+transform = Transform( -0.996266, 0.0863386, 0, -0.0863386, -0.996266, 0, 0, 0, 1, 0.160365, -0.36875, 0.0217643 )
+pixel_size = 0.0015
+render_priority = 1
+texture = ExtResource( 30 )
+
+[node name="Bark" type="AudioStreamPlayer3D" parent="Events/RPS Guy/Body"]
+transform = Transform( 1, 0, 0, 0, 0.833334, 0, 0, 0, 1, 0, 0, 0.5 )
+stream = ExtResource( 27 )
+unit_db = 6.0
+unit_size = 3.0
+max_db = 6.0
+bus = "SFX"
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="Sfx" type="AudioStreamPlayer3D" parent="Events/RPS Guy/Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+stream = ExtResource( 32 )
+unit_db = 6.0
+unit_size = 3.0
+max_db = 6.0
+bus = "SFX"
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="StartTrigger" type="Area" parent="Events/RPS Guy"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Events/RPS Guy/StartTrigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04866, 3.21859 )
+shape = SubResource( 13 )
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Events/RPS Guy"]
+anims/Jumpscare = SubResource( 16 )
+anims/RESET = SubResource( 15 )
+anims/Silly = SubResource( 14 )

@@ -24,8 +24,8 @@ namespace Project
             switchTimer.Connect("timeout", this, nameof(_SwitchState));
             initialWaitTime = switchTimer.WaitTime;
             switchTimer.WaitTime = Global.rng.RandfRange(
-                initialWaitTime - 0.1f,
-                initialWaitTime + 0.1f
+                initialWaitTime - 0.7f,
+                initialWaitTime + 0.7f
             );
         }
 

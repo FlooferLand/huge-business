@@ -16,6 +16,7 @@ namespace Project
 
             // Getting some UI nodes..
             Global.interactionProgress = GetNode<InteractionProgress>("InteractionProgress");
+            Global.interactionIndicator = GetNode<Label>("InteractionIndicator");
         }
     }
 }

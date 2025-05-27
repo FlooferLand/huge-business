@@ -9,6 +9,7 @@ namespace Project
 
         // Nodes
         AudioStreamPlayer3D streamPlayer;
+        Particles particles;
 
         // Variables
         public int progress = 0;
@@ -16,6 +17,7 @@ namespace Project
         public override void _Ready()
         {
             streamPlayer = GetNode<AudioStreamPlayer3D>("Audio");
+            particles = GetNode<Particles>("Particles");
         }
 
         public override void _Process(float delta)
@@ -35,6 +37,7 @@ namespace Project
             Global.interactionProgress.AddProgress(1);
             streamPlayer.PitchScale = Global.rng.RandfRange(0.95f, 1.05f);
             streamPlayer.Play();
+            particles.Emitting = true;
             EmitSignal(nameof(on_interact));
         }
     }

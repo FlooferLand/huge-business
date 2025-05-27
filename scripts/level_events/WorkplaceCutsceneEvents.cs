@@ -7,8 +7,9 @@ namespace Project
         // Nodes
         public AnimationPlayer animPlayer;
         public AnimationPlayer hordeBobPlayer;
-        public Spatial props;
-        public Spatial lights;
+        public Spatial coreProps;
+        public Spatial chaseProps;
+        public Spatial chaseLights;
         public AudioStreamPlayer chaseMusic;
         public AudioStreamPlayer3D employeeHordeFootsteps;
         public Camera jumpscareCamera;
@@ -21,11 +22,12 @@ namespace Project
             animPlayer = GetNode<AnimationPlayer>("AnimPlayer");
             animPlayer.Connect("animation_finished", this, nameof(_AnimFinished));
             jumpscareCamera = GetNode<Camera>("Chase/EmployeeHorde/JumpscareCamera");
-            cutsceneCamera = GetNode<Camera>("ChaseIntro/PlayerMockup/Camera");
+            cutsceneCamera = GetNode<Camera>("ChaseIntro/CutscenePlayer/Camera");
 
             // Getting stuff for _AnimFinished
-            props  = GetParent().GetNode<Spatial>("Props");
-            lights = GetParent().GetNode<Spatial>("Lights");
+            coreProps  = GetParent().GetNode<Spatial>("CoreSection/Props");
+            chaseProps  = GetParent().GetNode<Spatial>("ChaseSection/Props");
+            chaseLights = GetParent().GetNode<Spatial>("ChaseSection/Lights");
             chaseMusic = GetNode<AudioStreamPlayer>("ChaseMusic");
         }
 
@@ -39,19 +41,19 @@ namespace Project
             {
                 case "ChaseIntro":
                     // Stopping the user from going the wrong way
-                    StaticBody barricade = props.GetNode<StaticBody>("ExitBarricade");
+                    StaticBody barricade = chaseProps.GetNode<StaticBody>("ExitBarricade");
                     barricade.Translate(Vector3.Up * 5);
 
                     // Unlocking the door
-                    BaseDoor door = props.GetNode<BaseDoor>("Chase P1 Entrance");
+                    BaseDoor door = GetParent().GetNode<BaseDoor>("TransitionSection/Chase P1 Entrance");
                     door.locked = false;
 
                     // Hiding the "Hide" guide
-                    Sprite3D hideHelper = props.GetNode<Sprite3D>("Hide Helper");
+                    Sprite3D hideHelper = coreProps.GetNode<Sprite3D>("Hide Helper");
                     hideHelper.Visible = false;
 
                     // Helping guide the user by showing the door
-                    Light light = lights.GetNode<Light>("Chase P2 Entrance Light");
+                    Light light = chaseLights.GetNode<Light>("Chase P2 Entrance Light");
                     light.Visible = true;
 
                     // BAM BAM BAM BAM BUM BUM BRAPAPAPAPA
@@ -67,8 +69,6 @@ namespace Project
                     jumpscareCamera.ClearCurrent(false);
                     cutsceneCamera.ClearCurrent(false);
                     Global.player.camera.Current = true;
-                    break;
-                default:
                     break;
             }
         }

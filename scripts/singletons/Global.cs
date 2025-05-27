@@ -4,6 +4,8 @@ namespace Project
 {
     public static class Global
     {
+        public static PackedScene mapCheckpoint = null;
+        
         // Nodes
         public static GameMaster gameMaster;
         public static Player player;
@@ -14,6 +16,7 @@ namespace Project
         public static DialogueHandler dialogueHandler;
         public static PaperHandler    paperHandler;
         public static InteractionProgress interactionProgress;
+        public static Label interactionIndicator;
         public static CutsceneSkipper cutsceneSkipper;
 
         // Facility nodes

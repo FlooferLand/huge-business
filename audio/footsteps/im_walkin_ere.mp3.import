@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/im_walkin_ere.mp3-7a230e8112eb166b5de3b4a4ba266891.mp3str"
+
+[deps]
+
+source_file="res://audio/footsteps/im_walkin_ere.mp3"
+dest_files=[ "res://.import/im_walkin_ere.mp3-7a230e8112eb166b5de3b4a4ba266891.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
